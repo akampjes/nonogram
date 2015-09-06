@@ -1,0 +1,9 @@
+Game #<%= @game.id %>
+
+<% @game.rows.each do |columns| %>
+  <div class="row">
+  <% columns.each do |tile| %>
+    <span class="<%= tile.tile_type %>"><%= tile.content %></span>
+  <% end %>
+  </div>
+<% end %>

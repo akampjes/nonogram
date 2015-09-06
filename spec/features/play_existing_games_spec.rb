@@ -5,6 +5,7 @@ RSpec.feature "PlayExistingGames", type: :feature do
   # the views to work
   before do
     @game = Game.create!(board_size: 5)
+    GenerateNewPuzzle.new(game: @game).call
   end
 
   scenario 'Select existing game' do

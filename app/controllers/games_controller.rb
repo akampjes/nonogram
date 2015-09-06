@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = GameGridPresenter.new(Game.find(params[:id]))
   end
 
   def new
@@ -13,6 +13,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(game_params)
+    GenerateNewPuzzle.new(game: @game).call
 
     if @game.save
       redirect_to game_path(@game)
