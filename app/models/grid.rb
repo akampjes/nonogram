@@ -1,3 +1,5 @@
+require "#{Rails.root}/lib/array"
+
 class Grid
   def initialize(size:)
     @grid = Array.new(size) { Array.new(size) }
@@ -9,52 +11,8 @@ class Grid
         @grid[i][j] = random_square
       end
     end
-  end
 
-  def create_clues!(game)
-    for column in board_range
-      clue = game.clues.new(position: column, orientation: :column)
-
-      run = 0
-      values = []
-      for row in board_range
-        if @grid[row][column]
-          run += 1
-        elsif run > 0
-          values << run
-          run = 0
-        end
-      end
-
-      if run > 0
-        values << run
-      end
-
-      clue.values = values
-      clue.save!
-    end
-
-    for row in board_range
-      clue = game.clues.new(position: row, orientation: :row)
-
-      run = 0
-      values = []
-      for column in board_range
-        if @grid[row][column]
-          run += 1
-        elsif run > 0
-          values << run
-          run = 0
-        end
-      end
-
-      if run > 0
-        values << run
-      end
-
-      clue.values = values
-      clue.save!
-    end
+    @grid
   end
 
   # Crappy method for debugging/testing things
@@ -69,9 +27,10 @@ class Grid
       row_clues << clue.values.lfill(4, nil)
     end
 
-    n = column_clues[0].length
-
     result = ''
+
+    # First add all the clues for the columns
+    n = column_clues[0].length
     for i in 0..n-1
       result << (' '*n).to_s
       column_clues.each do |row|
@@ -81,9 +40,12 @@ class Grid
     end
 
     for i in board_range
+      # Next add all the clues for the rows
       row_clues[i].each do |clue|
         result << (clue || ' ').to_s
       end
+
+      # And also actual grid values
       for j in board_range
         if @grid[i][j]
           result << 'x'
