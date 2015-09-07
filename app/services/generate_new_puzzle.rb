@@ -18,7 +18,7 @@ class GenerateNewPuzzle
 
     create_clues!(grid)
 
-    display_grid(grid)
+    print display_grid(grid)
   end
 
   private
@@ -104,26 +104,29 @@ class GenerateNewPuzzle
 
     n = column_clues[0].length
 
+    result = ''
     for i in 0..n-1
-      print ' '*n
+      result << (' '*n).to_s
       column_clues.each do |row|
-        print row[i] || ' '
+        result << (row[i] || ' ').to_s
       end
-      print "\n"
+      result << "\n"
     end
 
     for i in board_range
       row_clues[i].each do |clue|
-        print clue || ' '
+        result << (clue || ' ').to_s
       end
       for j in board_range
         if grid[i][j]
-          print 'x'
+          result << 'x'
         else
-          print '_'
+          result << '_'
         end
       end
-      print "\n"
+      result << "\n"
     end
+
+    result
   end
 end
