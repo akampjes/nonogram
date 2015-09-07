@@ -7,57 +7,40 @@ class GenerateNewPuzzle
     grid = Grid.new(size: @game.board_size)
 
     grid_array = grid.randomly_populate!
-    create_clues!(grid_array)
+
+    create_clues!(grid: grid_array, orientation: :row)
+    create_clues!(grid: grid_array.transpose, orientation: :column)
 
     print grid.display_string(@game)
   end
 
   private
 
-  def create_clues!(grid)
-    for column in board_range
-      clue = @game.clues.new(position: column, orientation: :column)
+  def create_clues!(grid:, orientation:)
+    grid.each_with_index do |line, index|
+      clue = @game.clues.new(position: index, orientation: orientation)
 
-      run = 0
-      values = []
-      for row in board_range
-        if grid[row][column]
-          run += 1
-        elsif run > 0
-          values << run
-          run = 0
-        end
-      end
-
-      if run > 0
-        values << run
-      end
-
-      clue.values = values
+      clue.values = calculate_values(line)
       clue.save!
     end
+  end
 
-    for row in board_range
-      clue = @game.clues.new(position: row, orientation: :row)
+  def calculate_values(line)
+    values = []
 
-      run = 0
-      values = []
-      for column in board_range
-        if grid[row][column]
-          run += 1
-        elsif run > 0
-          values << run
-          run = 0
-        end
-      end
-
-      if run > 0
+    run = 0
+    line.each do |tile|
+      if tile
+        run += 1
+      elsif run > 0
         values << run
+        run = 0
       end
-
-      clue.values = values
-      clue.save!
     end
+
+    values << run if run > 0
+
+    values
   end
 
   def board_range
