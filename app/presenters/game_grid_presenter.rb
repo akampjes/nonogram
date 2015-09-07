@@ -18,7 +18,7 @@ class GameGridPresenter < SimpleDelegator
     column_clues.each do |clue|
       my_column_clues << clue.values.map { |value| Tile.new('clue_tile', value) }.lfill(max_column_count, Tile.new('clue_tile', nil))
     end
-    my_column_clues = transform_column_clues(my_column_clues)
+    my_column_clues = transform_column_clues(my_column_clues, max_column_count)
 
     my_row_clues = []
     row_clues.each do |clue|
@@ -34,14 +34,12 @@ class GameGridPresenter < SimpleDelegator
     0..board_size-1
   end
 
-  def transform_column_clues(my_column_clues)
-    n = my_column_clues[0].length
-
+  def transform_column_clues(my_column_clues, max_column_count)
     rows = []
-    for i in 0..n-1
+    for i in 0..max_column_count-1
       row = []
       # pad out the left hand side
-      n.times { row << Tile.new('clue_tile',nil) }
+      max_column_count.times { row << Tile.new('clue_tile',nil) }
       my_column_clues.each do |my_row|
         row << my_row[i]
       end
