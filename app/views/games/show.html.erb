@@ -1,9 +1,9 @@
-Game #<%= @game.id %>
+<h2>Game #<%= @game.id %></h2>
 
 <% @game.rows.each do |columns| %>
   <div class="row">
   <% columns.each do |tile| %>
-    <span class="<%= tile.tile_type %>"><%= tile.content %></span>
+    <div class="<%= tile.tile_type %>"><%= tile.content %></div>
   <% end %>
   </div>
 <% end %>
