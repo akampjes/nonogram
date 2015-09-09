@@ -9,6 +9,6 @@ RSpec.feature "CreateANewGame", type: :feature do
     fill_in 'Board size', with: '5'
     click_on 'Create'
 
-    expect(current_path).to eq game_path(Game.first)
+    expect(current_path).to eq game_path(Game.last)
   end
 end

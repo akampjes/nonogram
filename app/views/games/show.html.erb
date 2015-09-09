@@ -1,9 +1,9 @@
 <h2>Game #<%= @game.id %></h2>
 
-<% @game.rows.each do |columns| %>
+<% @game.rows.each_with_index do |columns,column_index| %>
   <div class="row">
-  <% columns.each do |tile| %>
-    <div class="<%= tile.tile_type %>"><%= tile.content %></div>
+  <% columns.each_with_index do |tile,row_index| %>
+    <div data-column=<%= tile.column_index %> data-row=<%= tile.row_index %> class="<%= tile.tile_type %>"><%= tile.content %></div>
   <% end %>
   </div>
 <% end %>

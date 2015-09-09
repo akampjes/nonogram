@@ -1,6 +1,6 @@
 require "#{Rails.root}/lib/array"
 
-Tile = Struct.new(:tile_type, :content)
+Tile = Struct.new(:tile_type, :content, :column_index, :row_index)
 
 class GameGridPresenter < SimpleDelegator
   def rows
@@ -14,9 +14,9 @@ class GameGridPresenter < SimpleDelegator
     end
     clues_grid = transform_column_clues(clues_grid, max_column_count)
 
-    row_clues.each do |clue|
+    row_clues.each_with_index do |clue,row_index|
       row = clue.values.map { |value| Tile.new('clue_tile', value) }.lfill(max_row_count, Tile.new('clue_tile', nil))
-      board_range.each { row << Tile.new('play_tile', nil) }
+      board_range.each { |column_index| row << Tile.new('play_tile', nil, column_index, row_index) }
       clues_grid << row
     end
 
