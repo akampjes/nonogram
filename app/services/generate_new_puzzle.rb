@@ -10,8 +10,6 @@ class GenerateNewPuzzle
 
     create_clues!(grid: grid_array, orientation: :row)
     create_clues!(grid: grid_array.transpose, orientation: :column)
-
-    print grid.display_string(@game)
   end
 
   private
