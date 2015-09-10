@@ -8,12 +8,6 @@ class Clue < ActiveRecord::Base
   validate :validate_position
   validate :validate_values
 
-  def ==(object)
-    values == object.values &&
-      orientation == object.orientation &&
-      position == object.position
-  end
-
   def validate_position
     unless position < game.board_size
       errors.add(:position, 'outside of grid')

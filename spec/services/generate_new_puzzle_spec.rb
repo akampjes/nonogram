@@ -31,6 +31,6 @@ RSpec.describe GenerateNewPuzzle, type: :service do
 
     GenerateNewPuzzle.new(game: game).call
 
-    expect(game.clues).to match_array expected_clues
+    expect(game.clues).to match_clue_array expected_clues
   end
 end
