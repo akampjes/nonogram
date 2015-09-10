@@ -22,6 +22,19 @@ class GamesController < ApplicationController
     end
   end
 
+  def check_answer
+    game = Game.find(params[:id])
+
+    grid = Grid.new(size: game.board_size).from_answer(params[:selected]).grid
+    game_status = CheckAnswer.new(game: game, grid: grid).call
+
+    if game_status
+      render json: {won: true, message: 'yup you win!'}
+    else
+      render json: {won: false, message: 'nope, try again'}
+    end
+  end
+
   private
 
   def game_params
