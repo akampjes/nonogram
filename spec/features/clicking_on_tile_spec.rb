@@ -10,6 +10,9 @@ RSpec.feature 'clicking on a tile', js: true do
     click_on 'Create'
 
     game = Game.last
+    # Do I really care about this case?
+    # Or will I find out when the next step fails anyway?
+    # Also seems non-threadsafe
     expect(current_path).to eq game_path(game)
 
     expect(page).to have_content "Game ##{game.id}"
@@ -19,5 +22,9 @@ RSpec.feature 'clicking on a tile', js: true do
     expect(page).to_not have_css 'div[data-column="0"][data-row="0"].play_tile.selected'
     page.find('div[data-column="0"][data-row="0"]').click
     expect(page).to have_css 'div[data-column="0"][data-row="0"].play_tile.selected'
+
+    expect(page.find('p.game_status').text).to be_empty
+    click_on 'Submit'
+    expect(page.find('p.game_status').text).to_not be_empty
   end
 end
