@@ -2,29 +2,83 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.row {
-  padding: 0;
-  margin: 0;
-  display: flex;
+.container {
+  float: left;
 }
 
-.clue_tile,
-.play_tile {
-  background: grey;
+.column {
+  float: right;
+}
+
+.grid {
+  float: right;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+
+  min-height: 52px;
+  min-width: 52px;
+}
+
+.flex-container-vertical {
+  padding: 0;
+  margin: 0;
+  
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-end;
+
+  min-height: 52px;
+  min-width: 52px;
+}
+
+.flex-item {
+  background: darkgrey;
   padding: 5px;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
+  width: 40px;
+  height: 40px;
+  margin: 1px;
+  
+  line-height: 40px;
   color: white;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 3em;
   text-align: center;
 }
 
-.play_tile:hover {
-  background: black;
+.play-tile:hover {
+  background: tomato;
 }
 
 .selected {
-  background: tomato;
+  background: darkblue;
+}
+
+.clue-tile {
+  background: grey;
+}
+
+.game-status {
+  padding: 5px;
+  color: grey;
+  font-size: 2em;
+}
+
+button {
+  background: darkblue;
+  padding: 5px;
+  color: white;
+  font-size: 2em;
 }

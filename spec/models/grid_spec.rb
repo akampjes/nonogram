@@ -17,4 +17,10 @@ RSpec.describe Grid do
     expect(answer_grid[1][1]).to be true
     expect(answer_grid[2][1]).to_not be true
   end
+
+  it 'handles nil answers' do
+    answer_grid = grid.from_answer(nil).grid
+
+    expect(answer_grid).to be_kind_of Array
+  end
 end

@@ -16,15 +16,15 @@ RSpec.feature 'clicking on a tile', js: true do
     expect(current_path).to eq game_path(game)
 
     expect(page).to have_content "Game ##{game.id}"
-    expect(page).to have_css '.clue_tile'
+    expect(page).to have_css '.clue-tile'
 
-    expect(page).to have_css 'div[data-column="0"][data-row="0"].play_tile'
-    expect(page).to_not have_css 'div[data-column="0"][data-row="0"].play_tile.selected'
+    expect(page).to have_css 'div[data-column="0"][data-row="0"].play-tile'
+    expect(page).to_not have_css 'div[data-column="0"][data-row="0"].play-tile.selected'
     page.find('div[data-column="0"][data-row="0"]').click
-    expect(page).to have_css 'div[data-column="0"][data-row="0"].play_tile.selected'
+    expect(page).to have_css 'div[data-column="0"][data-row="0"].play-tile.selected'
 
-    expect(page.find('p.game_status').text).to be_empty
+    expect(page.find('p.game-status').text).to be_empty
     click_on 'Submit'
-    expect(page.find('p.game_status').text).to_not be_empty
+    expect(page.find('p.game-status').text).to_not be_empty
   end
 end

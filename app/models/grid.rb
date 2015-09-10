@@ -6,6 +6,7 @@ class Grid
   end
 
   def from_answer(answer)
+    return self if answer.blank?
     answer.each do |tile|
       row = tile[:row]
       column = tile[:column]

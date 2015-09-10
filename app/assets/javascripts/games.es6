@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 
 $(document).ready(function(){
-  $('.play_tile').click(function(){
+  $('.play-tile').click(function(){
     $(this).toggleClass('selected');
     var column = $(this).data('column');
     var row = $(this).data('row');
@@ -26,7 +26,7 @@ $(document).ready(function(){
       data: JSON.stringify({"selected": selected}),
       success: function(data) {
         console.log(data);
-        $('.game_status').text(data['message'])
+        $('.game-status').text(data['message'])
       }
     });
   });

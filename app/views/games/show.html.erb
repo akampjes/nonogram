@@ -1,15 +1,41 @@
-<h2>Game #<%= @game.id %></h2>
-
-<% @game.rows.each_with_index do |columns,column_index| %>
+<div class="container">
+  <h2>Game #<%= @game.id %></h2>
   <div class="row">
-  <% columns.each_with_index do |tile,row_index| %>
-    <div data-column=<%= tile.column_index %> data-row=<%= tile.row_index %> class="<%= tile.tile_type %>"><%= tile.content %></div>
-  <% end %>
+    <div class="column-clues column flex-container">
+      <% @game.column_clues.each do |column| %>
+        <div class="flex-container-vertical">
+          <% column.values.each do |value| %>
+            <div class="flex-item clue-tile"><%= value %></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-
-<p class="game_status"></p>
-<div>
-  <button id="submit_game">Submit</button>
+  <div class="row">
+    <div class="grid">
+      <% (0..@game.board_size-1).each do |row| %>
+        <div class="row flex-container">
+          <% (0..@game.board_size-1).each do |column| %>
+            <div data-column=<%= column %> data-row=<%= row %> class="flex-item play-tile"></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="flex-container-vertical column">
+      <% @game.row_clues.each do |row| %>
+        <div class="flex-container">
+          <% row.values.each do |value| %>
+            <div class="flex-item clue-tile"><%= value %></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <div>
+    <button id="submit_game">Submit</button>
+  </div>
+  <p class="game-status"></p>
 </div>
+
+
