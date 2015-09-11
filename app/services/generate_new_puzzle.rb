@@ -22,8 +22,4 @@ class GenerateNewPuzzle
       clue.save!
     end
   end
-
-  def board_range
-    0..(@game.board_size - 1)
-  end
 end

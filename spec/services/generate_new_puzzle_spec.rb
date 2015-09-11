@@ -15,8 +15,6 @@ RSpec.describe GenerateNewPuzzle, type: :service do
   it 'creates the correct clues' do
     srand(1)
 
-    # This is probably a bit fragile with the forced id field.
-    # Maybe a custom matcher would do the trick
     expected_clues = []
     expected_clues << Clue.new(orientation: :column, position: 0, lengths: [3])
     expected_clues << Clue.new(orientation: :column, position: 1, lengths: [1,1])
