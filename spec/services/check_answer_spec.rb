@@ -5,16 +5,16 @@ RSpec.describe CheckAnswer do
   let(:game) { Game.create!(board_size: board_size) }
 
   before do
-    game.clues.create!(orientation: :column, position: 0, values: [1])
-    game.clues.create!(orientation: :column, position: 1, values: [])
-    game.clues.create!(orientation: :column, position: 2, values: [3])
-    game.clues.create!(orientation: :column, position: 3, values: [3])
-    game.clues.create!(orientation: :column, position: 4, values: [1])
-    game.clues.create!(orientation: :row, position: 0, values: [1])
-    game.clues.create!(orientation: :row, position: 1, values: [1])
-    game.clues.create!(orientation: :row, position: 2, values: [2])
-    game.clues.create!(orientation: :row, position: 3, values: [1])
-    game.clues.create!(orientation: :row, position: 4, values: [1,1,1])
+    game.clues.create!(orientation: :column, position: 0, lengths: [1])
+    game.clues.create!(orientation: :column, position: 1, lengths: [])
+    game.clues.create!(orientation: :column, position: 2, lengths: [3])
+    game.clues.create!(orientation: :column, position: 3, lengths: [3])
+    game.clues.create!(orientation: :column, position: 4, lengths: [1])
+    game.clues.create!(orientation: :row, position: 0, lengths: [1])
+    game.clues.create!(orientation: :row, position: 1, lengths: [1])
+    game.clues.create!(orientation: :row, position: 2, lengths: [2])
+    game.clues.create!(orientation: :row, position: 3, lengths: [1])
+    game.clues.create!(orientation: :row, position: 4, lengths: [1,1,1])
   end
 
   it 'checks a correct answer' do

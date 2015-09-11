@@ -4,8 +4,8 @@
     <div class="column-clues column flex-container">
       <% @game.column_clues.each do |column| %>
         <div class="flex-container-vertical">
-          <% column.values.each do |value| %>
-            <div class="flex-item clue-tile"><%= value %></div>
+          <% column.lengths.each do |length| %>
+            <div class="flex-item clue-tile"><%= length %></div>
           <% end %>
         </div>
       <% end %>
@@ -24,8 +24,8 @@
     <div class="flex-container-vertical column">
       <% @game.row_clues.each do |row| %>
         <div class="flex-container">
-          <% row.values.each do |value| %>
-            <div class="flex-item clue-tile"><%= value %></div>
+          <% row.lengths.each do |length| %>
+            <div class="flex-item clue-tile"><%= length %></div>
           <% end %>
         </div>
       <% end %>

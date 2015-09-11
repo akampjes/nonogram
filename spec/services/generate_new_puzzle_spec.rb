@@ -18,16 +18,16 @@ RSpec.describe GenerateNewPuzzle, type: :service do
     # This is probably a bit fragile with the forced id field.
     # Maybe a custom matcher would do the trick
     expected_clues = []
-    expected_clues << Clue.new(orientation: :column, position: 0, values: [3])
-    expected_clues << Clue.new(orientation: :column, position: 1, values: [1,1])
-    expected_clues << Clue.new(orientation: :column, position: 2, values: [3,1])
-    expected_clues << Clue.new(orientation: :column, position: 3, values: [2,1])
-    expected_clues << Clue.new(orientation: :column, position: 4, values: [1,2])
-    expected_clues << Clue.new(orientation: :row, position: 0, values: [1,3])
-    expected_clues << Clue.new(orientation: :row, position: 1, values: [4])
-    expected_clues << Clue.new(orientation: :row, position: 2, values: [1,1,1])
-    expected_clues << Clue.new(orientation: :row, position: 3, values: [1,2])
-    expected_clues << Clue.new(orientation: :row, position: 4, values: [1])
+    expected_clues << Clue.new(orientation: :column, position: 0, lengths: [3])
+    expected_clues << Clue.new(orientation: :column, position: 1, lengths: [1,1])
+    expected_clues << Clue.new(orientation: :column, position: 2, lengths: [3,1])
+    expected_clues << Clue.new(orientation: :column, position: 3, lengths: [2,1])
+    expected_clues << Clue.new(orientation: :column, position: 4, lengths: [1,2])
+    expected_clues << Clue.new(orientation: :row, position: 0, lengths: [1,3])
+    expected_clues << Clue.new(orientation: :row, position: 1, lengths: [4])
+    expected_clues << Clue.new(orientation: :row, position: 2, lengths: [1,1,1])
+    expected_clues << Clue.new(orientation: :row, position: 3, lengths: [1,2])
+    expected_clues << Clue.new(orientation: :row, position: 4, lengths: [1])
 
     GenerateNewPuzzle.new(game: game).call
 

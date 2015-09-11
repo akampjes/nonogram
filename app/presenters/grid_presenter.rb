@@ -3,12 +3,12 @@ class GridPresenter < SimpleDelegator
   def display_string(game)
     column_clues = []
     game.column_clues.each do |clue|
-      column_clues << clue.values.lfill(4, nil)
+      column_clues << clue.lengths.lfill(4, nil)
     end
 
     row_clues = []
     game.row_clues.each do |clue|
-      row_clues << clue.values.lfill(4, nil)
+      row_clues << clue.lengths.lfill(4, nil)
     end
 
     result = ''
@@ -29,7 +29,7 @@ class GridPresenter < SimpleDelegator
         result << (clue || ' ').to_s
       end
 
-      # And also actual grid values
+      # And also actual grid lengths
       for j in board_range
         if @grid[i][j]
           result << 'x'

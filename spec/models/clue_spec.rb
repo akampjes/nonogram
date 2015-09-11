@@ -4,12 +4,12 @@ RSpec.describe Clue, type: :model do
   let(:game) { Game.create!(board_size: 5) }
   subject(:clue) { game.clues.new() }
 
-  describe '#values' do
-    it 'it is set with an array of values' do
+  describe '#lengths' do
+    it 'it is set with an array of lengths' do
       a = [1,2,3]
-      subject.values = a
+      subject.lengths = a
 
-      expect(subject.values).to eq a
+      expect(subject.lengths).to eq a
     end
   end
 end

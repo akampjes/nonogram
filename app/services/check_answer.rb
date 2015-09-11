@@ -30,20 +30,20 @@ class CheckAnswer
   end
 
   def line_correct?(clue, line)
-    values = []
+    lengths = []
 
     run = 0
     line.each do |tile|
       if tile
         run += 1
       elsif run > 0
-        values << run
+        lengths << run
         run = 0
       end
     end
-    values << run if run > 0
+    lengths << run if run > 0
 
-    return false unless values == clue.values
+    return false unless lengths == clue.lengths
 
     true
   end
