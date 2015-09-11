@@ -25,6 +25,7 @@ RSpec.feature 'clicking on a tile', js: true do
 
     expect(page.find('p.game-status').text).to be_empty
     click_on 'Submit'
+    sleep 1
     expect(page.find('p.game-status').text).to_not be_empty
   end
 end
