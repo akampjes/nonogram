@@ -18,27 +18,9 @@ class GenerateNewPuzzle
     grid.each_with_index do |line, index|
       clue = @game.clues.new(position: index, orientation: orientation)
 
-      clue.lengths = calculate_lengths(line)
+      clue.lengths = CalculateLengths.new(line: line).call
       clue.save!
     end
-  end
-
-  def calculate_lengths(line)
-    lengths = []
-
-    run = 0
-    line.each do |tile|
-      if tile
-        run += 1
-      elsif run > 0
-        lengths << run
-        run = 0
-      end
-    end
-
-    lengths << run if run > 0
-
-    lengths
   end
 
   def board_range
