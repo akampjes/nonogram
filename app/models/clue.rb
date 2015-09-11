@@ -8,6 +8,9 @@ class Clue < ActiveRecord::Base
   validate :validate_position
   validate :validate_values
 
+  scope :column_clues, -> { where(orientation: Clue.orientations[:column]).order(:position) }
+  scope :row_clues, -> { where(orientation: Clue.orientations[:row]).order(:position) }
+
   def validate_position
     unless position < game.board_size
       errors.add(:position, 'outside of grid')
