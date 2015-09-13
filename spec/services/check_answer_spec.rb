@@ -18,7 +18,7 @@ RSpec.describe CheckAnswer do
   end
 
   it 'checks a correct answer' do
-    answer = [
+    selected_tiles = [
       {column: 0, row: 4},
       {column: 2, row: 2},
       {column: 2, row: 3},
@@ -29,18 +29,18 @@ RSpec.describe CheckAnswer do
       {column: 4, row: 4},
     ]
 
-    grid = Grid.new(size: board.board_size).from_answer(answer).grid
+    grid = Grid.new(size: board.board_size).from_selected_tiles(selected_tiles).grid
 
     expect(CheckAnswer.new(board: board, grid: grid).call).to be true
   end
 
   it 'checks an incorrect answer' do
-    answer = [
+    selected_tiles = [
       {column: 0, row: 4},
       {column: 2, row: 2},
     ]
 
-    grid = Grid.new(size: board.board_size).from_answer(answer).grid
+    grid = Grid.new(size: board.board_size).from_selected_tiles(selected_tiles).grid
 
     expect(CheckAnswer.new(board: board, grid: grid).call).to be false
   end

@@ -11,11 +11,11 @@ class CheckAnswer
   private
 
   def all_clues_correct?
-    check_clue_lines(@board.row_clues, @grid) &&
-      check_clue_lines(@board.column_clues, @grid.transpose)
+    lines_correct?(@board.row_clues, @grid) &&
+      lines_correct?(@board.column_clues, @grid.transpose)
   end
 
-  def check_clue_lines(clues, grid) # Rename to somehting something ?
+  def lines_correct?(clues, grid)
     clues.each do |clue|
       return false unless line_correct?(clue, grid[clue.position])
     end

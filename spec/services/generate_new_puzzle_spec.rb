@@ -31,4 +31,16 @@ RSpec.describe GenerateNewPuzzle, type: :service do
 
     expect(board.clues).to match_clue_array expected_clues
   end
+
+  context 'board clues are supposed to be random' do
+    it 'creates random clues' do
+      srand(1)
+      board2 = Board.create!(board_size: board_size)
+
+      GenerateNewPuzzle.new(board: board).call
+      GenerateNewPuzzle.new(board: board2).call
+
+      expect(board.clues).not_to match_clue_array board2.clues
+    end
+  end
 end

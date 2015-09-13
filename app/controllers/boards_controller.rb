@@ -23,14 +23,7 @@ class BoardsController < ApplicationController
   end
 
   def check_answer
-    board = Board.find(params[:id])
-
-    grid = Grid.new(size: board.board_size).from_answer(params[:selected]).grid
-    board_status = CheckAnswer.new(board: board, grid: grid).call # board_status is an awful name, wtf is a "status.
-    # why not just have `if won?` with won? being a private method that does this.
-    # message should be view logic.
-
-    if board_status
+    if won?
       render json: {won: true, message: 'yup you win!'}
     else
       render json: {won: false, message: 'nope, try again'}
@@ -38,6 +31,14 @@ class BoardsController < ApplicationController
   end
 
   private
+
+  def won?
+    board = Board.find(params[:id])
+
+    grid = Grid.new(size: board.board_size).from_selected_tiles(params[:selected]).grid
+    CheckAnswer.new(board: board, grid: grid).call
+  end
+  
   def board_params
     params.require(:board).permit(:board_size)
   end
