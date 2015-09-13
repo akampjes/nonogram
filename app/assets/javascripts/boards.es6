@@ -9,7 +9,7 @@ $(document).ready(function(){
     console.log(`col: ${column}, row:${row}`);
   });
 
-  $('#submit_game').click(function(){
+  $('#submit_board').click(function(){ // bra, it's es6: () => 
     var selected = []
     $('.selected').each(function(key, value){
       var row = $(value).data('row');
@@ -26,7 +26,7 @@ $(document).ready(function(){
       data: JSON.stringify({"selected": selected}),
       success: function(data) {
         console.log(data);
-        $('.game-status').text(data['message'])
+        $('.board-status').text(data['message'])
       }
     });
   });

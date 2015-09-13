@@ -1,8 +1,8 @@
 <div class="container">
-  <h2>Game #<%= @game.id %></h2>
+  <h2>Board #<%= @board.id %></h2>
   <div class="row">
     <div class="column-clues column flex-container">
-      <% @game.column_clues.each do |column| %>
+      <% @board.column_clues.each do |column| %>
         <div class="flex-container-vertical">
           <% column.lengths.each do |length| %>
             <div class="flex-item clue-tile"><%= length %></div>
@@ -13,16 +13,16 @@
   </div>
   <div class="row">
     <div class="grid">
-      <% (0..@game.board_size-1).each do |row| %>
+      <% (0..@board.board_size-1).each do |row| %>
         <div class="row flex-container">
-          <% (0..@game.board_size-1).each do |column| %>
+          <% (0..@board.board_size-1).each do |column| %>
             <div data-column=<%= column %> data-row=<%= row %> class="flex-item play-tile"></div>
           <% end %>
         </div>
       <% end %>
     </div>
     <div class="flex-container-vertical column">
-      <% @game.row_clues.each do |row| %>
+      <% @board.row_clues.each do |row| %>
         <div class="flex-container">
           <% row.lengths.each do |length| %>
             <div class="flex-item clue-tile"><%= length %></div>
@@ -33,7 +33,7 @@
   </div>
   <br>
   <div>
-    <button id="submit_game">Submit</button>
+    <button id="submit_board">Submit</button>
   </div>
-  <p class="game-status"></p>
+  <p class="board-status"></p>
 </div>

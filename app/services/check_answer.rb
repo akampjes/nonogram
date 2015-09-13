@@ -1,6 +1,6 @@
 class CheckAnswer
-  def initialize(game:, grid:)
-    @game = game
+  def initialize(board:, grid:)
+    @board = board
     @grid = grid
   end
 
@@ -11,11 +11,11 @@ class CheckAnswer
   private
 
   def all_clues_correct?
-    check_clue_lines(@game.row_clues, @grid) &&
-      check_clue_lines(@game.column_clues, @grid.transpose)
+    check_clue_lines(@board.row_clues, @grid) &&
+      check_clue_lines(@board.column_clues, @grid.transpose)
   end
 
-  def check_clue_lines(clues, grid)
+  def check_clue_lines(clues, grid) # Rename to somehting something ?
     clues.each do |clue|
       return false unless line_correct?(clue, grid[clue.position])
     end

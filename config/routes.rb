@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :games do
+  resources :boards do
     member do
       post 'check_answer'
     end
   end
 
-  root 'games#index'
+  root 'boards#index'
 
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,12 +1,12 @@
 class GenerateNewPuzzle
-  def initialize(game:)
-    @game = game
+  def initialize(board:)
+    @board = board
   end
 
   def call
-    grid = Grid.new(size: @game.board_size)
+    grid = Grid.new(size: @board.board_size)
 
-    grid_array = grid.randomly_populate!
+    grid_array = grid.randomly_populate! # WRONG
 
     create_clues!(grid: grid_array, orientation: :row)
     create_clues!(grid: grid_array.transpose, orientation: :column)
@@ -16,7 +16,7 @@ class GenerateNewPuzzle
 
   def create_clues!(grid:, orientation:)
     grid.each_with_index do |line, index|
-      clue = @game.clues.new(position: index, orientation: orientation)
+      clue = @board.clues.new(position: index, orientation: orientation)
 
       clue.lengths = CalculateLengths.new(line: line).call
       clue.save!

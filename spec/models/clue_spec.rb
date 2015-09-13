@@ -1,15 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Clue, type: :model do
-  let(:game) { Game.create!(board_size: 5) }
-  subject(:clue) { game.clues.new() }
+  let(:board) { Board.create!(board_size: 5) }
+  subject(:clue) { board.clues.new() } # brackets?
+
+  # I could probably add some more tests here
 
   describe '#lengths' do
-    it 'it is set with an array of lengths' do
-      a = [1,2,3]
-      subject.lengths = a
+    it 'is set with an array of lengths' do
+      lengths = [1,2,3]
+      subject.lengths = lengths
 
-      expect(subject.lengths).to eq a
+      expect(subject.lengths).to eq lengths
     end
   end
 end
