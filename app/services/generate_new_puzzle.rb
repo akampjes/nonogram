@@ -4,12 +4,12 @@ class GenerateNewPuzzle
   end
 
   def call
-    grid = Grid.new(size: @puzzle.board_size).grid
+    grid = Grid.new(size: @puzzle.board_size)
 
-    grid = randomly_populate(grid)
+    grid.randomly_populate!
 
-    create_clues!(grid: grid, orientation: :row)
-    create_clues!(grid: grid.transpose, orientation: :column)
+    create_clues!(grid: grid.rows, orientation: :row)
+    create_clues!(grid: grid.columns, orientation: :column)
   end
 
   private
@@ -21,18 +21,5 @@ class GenerateNewPuzzle
       clue.lengths = CalculateLengths.new(line: line).call
       clue.save!
     end
-  end
-
-  def randomly_populate(grid)
-    grid.map do |columns|
-      columns.map do |tile|
-        random_square
-      end
-    end
-  end
-
-  def random_square
-    # About 50% chance of dark square seems to generate alright puzzles
-    rand < 0.5 ? true : false
   end
 end

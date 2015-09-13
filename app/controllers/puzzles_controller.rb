@@ -35,7 +35,7 @@ class PuzzlesController < ApplicationController
   def won?
     puzzle = Puzzle.find(params[:id])
 
-    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(params[:selected]).grid
+    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(params[:selected])
     CheckAnswer.new(puzzle: puzzle, grid: grid).call
   end
   

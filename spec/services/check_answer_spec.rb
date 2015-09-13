@@ -29,7 +29,7 @@ RSpec.describe CheckAnswer do
       {column: 4, row: 4},
     ]
 
-    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(selected_tiles).grid
+    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(selected_tiles)
 
     expect(CheckAnswer.new(puzzle: puzzle, grid: grid).call).to be true
   end
@@ -40,7 +40,7 @@ RSpec.describe CheckAnswer do
       {column: 2, row: 2},
     ]
 
-    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(selected_tiles).grid
+    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(selected_tiles)
 
     expect(CheckAnswer.new(puzzle: puzzle, grid: grid).call).to be false
   end

@@ -11,8 +11,8 @@ class CheckAnswer
   private
 
   def all_clues_correct?
-    lines_correct?(@puzzle.row_clues, @grid) &&
-      lines_correct?(@puzzle.column_clues, @grid.transpose)
+    lines_correct?(@puzzle.row_clues, @grid.rows) &&
+      lines_correct?(@puzzle.column_clues, @grid.columns)
   end
 
   def lines_correct?(clues, grid)
