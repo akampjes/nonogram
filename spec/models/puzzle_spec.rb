@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Board, type: :model do
+RSpec.describe Puzzle, type: :model do
   describe '#board_size' do
     it 'is a number' do
       subject.board_size = 5

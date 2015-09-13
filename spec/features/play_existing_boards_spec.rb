@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-RSpec.feature "PlayExistingBoards", type: :feature do
+RSpec.feature "PlayExistingPuzzles", type: :feature do
   # We use before here because it needs to be loaded for
   # the views to work
   before do
-    @board = Board.create!(board_size: 5)
-    GenerateNewPuzzle.new(board: @board).call
+    @puzzle = Puzzle.create!(board_size: 5)
+    GenerateNewPuzzle.new(puzzle: @puzzle).call
   end
 
-  scenario 'Select existing board' do
+  scenario 'Select existing puzzle' do
 
-    visit boards_path
-    expect(page).to have_content 'Boards'
+    visit puzzles_path
+    expect(page).to have_content 'Puzzles'
 
-    click_on "board #{@board.id}"
+    click_on "puzzle #{@puzzle.id}"
 
-    expect(current_path).to eq board_path(@board)
+    expect(current_path).to eq puzzle_path(@puzzle)
   end
 end

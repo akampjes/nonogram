@@ -3,21 +3,21 @@ require 'rails_helper'
 RSpec.feature 'clicking on a tile', js: true do
   let(:board_size) { 5 }
 
-  scenario 'playing through a board' do
-    visit boards_path
-    expect(page).to have_content 'Boards'
+  scenario 'playing through a puzzle' do
+    visit puzzles_path
+    expect(page).to have_content 'Puzzles'
 
-    click_on 'Create board'
+    click_on 'Create puzzle'
     fill_in 'Board size', with: board_size
     click_on 'Create'
 
-    board = Board.last
+    puzzle = Puzzle.last
     # Do I really care about this case?
     # Or will I find out when the next step fails anyway?
     # Also seems non-threadsafe
-    expect(current_path).to eq board_path(board)
+    expect(current_path).to eq puzzle_path(puzzle)
 
-    expect(page).to have_content "Board ##{board.id}"
+    expect(page).to have_content "Puzzle ##{puzzle.id}"
     expect(page).to have_css '.clue-tile'
     expect(page).to have_css '.play-tile', count: board_size*board_size
 

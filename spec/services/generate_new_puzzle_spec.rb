@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe GenerateNewPuzzle, type: :service do
   let(:board_size) { 5 }
-  let(:board) { Board.create!(board_size: board_size) }
+  let(:puzzle) { Puzzle.create!(board_size: board_size) }
 
   it 'generates creates clues' do
     srand(1)
 
     expect {
-      GenerateNewPuzzle.new(board: board).call
+      GenerateNewPuzzle.new(puzzle: puzzle).call
     }.to change { Clue.count }.by 2*board_size
   end
 
@@ -27,20 +27,20 @@ RSpec.describe GenerateNewPuzzle, type: :service do
     expected_clues << Clue.new(orientation: :row, position: 3, lengths: [1,2])
     expected_clues << Clue.new(orientation: :row, position: 4, lengths: [1])
 
-    GenerateNewPuzzle.new(board: board).call
+    GenerateNewPuzzle.new(puzzle: puzzle).call
 
-    expect(board.clues).to match_clue_array expected_clues
+    expect(puzzle.clues).to match_clue_array expected_clues
   end
 
-  context 'board clues are supposed to be random' do
+  context 'puzzle clues are supposed to be random' do
     it 'creates random clues' do
       srand(1)
-      board2 = Board.create!(board_size: board_size)
+      puzzle2 = Puzzle.create!(board_size: board_size)
 
-      GenerateNewPuzzle.new(board: board).call
-      GenerateNewPuzzle.new(board: board2).call
+      GenerateNewPuzzle.new(puzzle: puzzle).call
+      GenerateNewPuzzle.new(puzzle: puzzle2).call
 
-      expect(board.clues).not_to match_clue_array board2.clues
+      expect(puzzle.clues).not_to match_clue_array puzzle2.clues
     end
   end
 end

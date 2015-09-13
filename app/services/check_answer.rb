@@ -1,6 +1,6 @@
 class CheckAnswer
-  def initialize(board:, grid:)
-    @board = board
+  def initialize(puzzle:, grid:)
+    @puzzle = puzzle
     @grid = grid
   end
 
@@ -11,8 +11,8 @@ class CheckAnswer
   private
 
   def all_clues_correct?
-    lines_correct?(@board.row_clues, @grid) &&
-      lines_correct?(@board.column_clues, @grid.transpose)
+    lines_correct?(@puzzle.row_clues, @grid) &&
+      lines_correct?(@puzzle.column_clues, @grid.transpose)
   end
 
   def lines_correct?(clues, grid)

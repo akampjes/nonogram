@@ -1,9 +1,9 @@
 class Clue < ActiveRecord::Base
-  belongs_to :board
+  belongs_to :puzzle
 
   enum orientation: [:row, :column]
 
-  validates :board, presence: true
+  validates :puzzle, presence: true
   validates :orientation, presence: true
   validate :validate_position
 
@@ -11,7 +11,7 @@ class Clue < ActiveRecord::Base
   scope :row_clues, -> { where(orientation: Clue.orientations[:row]).order(:position) }
 
   def validate_position
-    unless position >= 0 && position < board.board_size 
+    unless position >= 0 && position < puzzle.board_size 
       errors.add(:position, 'outside of grid')
     end
   end

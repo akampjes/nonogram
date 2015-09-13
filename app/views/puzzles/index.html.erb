@@ -1,0 +1,9 @@
+<h1>Puzzles</h1>
+
+<ul>
+<% @puzzles.each do |puzzle|  %>
+  <li><%= link_to "puzzle #{puzzle.id}", puzzle_path(puzzle) %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Create puzzle', new_puzzle_path %>

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Clue, type: :model do
-  let(:board) { Board.create!(board_size: 5) }
-  subject(:clue) { board.clues.new() } # brackets?
+  subject(:puzzle) { Puzzle.create!(board_size: 5) }
+  subject(:clue) { puzzle.clues.new }
 
   # I could probably add some more tests here
 
