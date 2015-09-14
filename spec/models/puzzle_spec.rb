@@ -7,6 +7,10 @@ RSpec.describe Puzzle, type: :model do
       expect(subject).to be_valid
     end
 
+    it 'defaults to 5' do
+      expect(subject.board_size).to eq 5
+    end
+
     context 'invalid board_size when' do
       it 'is less than five' do
         subject.board_size = 4
