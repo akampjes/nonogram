@@ -11,7 +11,7 @@ class Clue < ActiveRecord::Base
   scope :for_rows, -> { where(orientation: Clue.orientations[:row]).order(:position) }
 
   def validate_position_is_in_range
-    unless position >= 0 && position < puzzle.board_size 
+    unless position && puzzle && position >= 0 && position < puzzle.board_size 
       errors.add(:position, 'outside of grid')
     end
   end
