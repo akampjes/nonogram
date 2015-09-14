@@ -16,7 +16,7 @@ class Grid
     answer.each do |tile|
       row = tile[:row]
       column = tile[:column]
-      @grid[row][column] = true
+      @grid[row.to_i][column.to_i] = true
     end
     self
   end
