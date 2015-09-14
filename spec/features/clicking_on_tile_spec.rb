@@ -10,6 +10,8 @@ RSpec.feature 'clicking on a tile', js: true do
     click_on 'Create puzzle'
     fill_in 'Board size', with: board_size
     click_on 'Create'
+    # show nick why this fails
+    #Puzzle.create!(ee....)
 
     puzzle = Puzzle.last
     # Do I really care about this case?

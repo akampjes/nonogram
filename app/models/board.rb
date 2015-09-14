@@ -1,28 +1,28 @@
-class Grid
+class Board
   def initialize(size:)
-    @grid = Array.new(size) { Array.new(size) }
+    @board = Array.new(size) { Array.new(size) }
   end
 
-  def rows
-    @grid
+  def row_lines
+    @board
   end
 
-  def columns
-    @grid.transpose
+  def column_lines
+    @board.transpose
   end
 
-  def from_selected_tiles(answer)
-    return self if answer.blank?
-    answer.each do |tile|
+  def from_boxes(boxes)
+    return self if boxes.blank?
+    boxes.each do |tile|
       row = tile[:row]
       column = tile[:column]
-      @grid[row.to_i][column.to_i] = true
+      @board[row.to_i][column.to_i] = true
     end
     self
   end
 
   def randomly_populate!
-    @grid.map! do |columns|
+    @board.map! do |columns|
       columns.map do |tile|
         random_square
       end

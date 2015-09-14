@@ -22,7 +22,11 @@ class PuzzlesController < ApplicationController
     end
   end
 
-  def check_answer
+  def check_solution
+    # Could use #update for this but it's not really updating the puzzle
+    # I could make an entire controller just to take #create on a solution
+    # do the check there but because we don't persist but rather just
+    # query, I feel like this is sufficient.
     if won?
       render json: {won: true, message: 'yup you win!'}
     else
@@ -35,8 +39,8 @@ class PuzzlesController < ApplicationController
   def won?
     puzzle = Puzzle.find(params[:id])
 
-    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(params[:selected])
-    CheckAnswer.new(puzzle: puzzle, grid: grid).call
+    board = Board.new(size: puzzle.board_size).from_boxes(params[:boxes])
+    CheckSolution.new(puzzle: puzzle, board: board).call
   end
   
   def puzzle_params

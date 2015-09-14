@@ -5,12 +5,12 @@ class Clue < ActiveRecord::Base
 
   validates :puzzle, presence: true
   validates :orientation, presence: true
-  validate :validate_position
+  validate :validate_position_is_in_range
 
-  scope :column_clues, -> { where(orientation: Clue.orientations[:column]).order(:position) }
-  scope :row_clues, -> { where(orientation: Clue.orientations[:row]).order(:position) }
+  scope :for_columns, -> { where(orientation: Clue.orientations[:column]).order(:position) }
+  scope :for_rows, -> { where(orientation: Clue.orientations[:row]).order(:position) }
 
-  def validate_position
+  def validate_position_is_in_range
     unless position >= 0 && position < puzzle.board_size 
       errors.add(:position, 'outside of grid')
     end

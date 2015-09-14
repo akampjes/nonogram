@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :puzzles do
     member do
-      post 'check_answer'
+      post 'check_solution'
     end
   end
 

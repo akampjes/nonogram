@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CheckAnswer do
+RSpec.describe CheckSolution do
   let(:board_size) { 5 }
   let(:puzzle) { Puzzle.create!(board_size: board_size) }
 
@@ -17,8 +17,8 @@ RSpec.describe CheckAnswer do
     puzzle.clues.create!(orientation: :row, position: 4, lengths: [1,1,1])
   end
 
-  it 'checks a correct answer' do
-    selected_tiles = [
+  it 'checks a correct solution' do
+    boxes = [
       {column: 0, row: 4},
       {column: 2, row: 2},
       {column: 2, row: 3},
@@ -29,19 +29,19 @@ RSpec.describe CheckAnswer do
       {column: 4, row: 4},
     ]
 
-    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(selected_tiles)
+    board = Board.new(size: puzzle.board_size).from_boxes(boxes)
 
-    expect(CheckAnswer.new(puzzle: puzzle, grid: grid).call).to be true
+    expect(CheckSolution.new(puzzle: puzzle, board: board).call).to be true
   end
 
-  it 'checks an incorrect answer' do
-    selected_tiles = [
+  it 'checks an incorrect solution' do
+    boxes = [
       {column: 0, row: 4},
       {column: 2, row: 2},
     ]
 
-    grid = Grid.new(size: puzzle.board_size).from_selected_tiles(selected_tiles)
+    board = Board.new(size: puzzle.board_size).from_boxes(boxes)
 
-    expect(CheckAnswer.new(puzzle: puzzle, grid: grid).call).to be false
+    expect(CheckSolution.new(puzzle: puzzle, board: board).call).to be false
   end
 end
