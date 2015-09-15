@@ -16,10 +16,33 @@ ready(() => {
     item.addEventListener('click', (event) => {
       var element = event.target;
       element.classList.toggle('selected');
-      var column = element.dataset.column;
-      var row = element.dataset.row;
     });
   });
+
+  Array.prototype.forEach.call(play_cells, function(item, i){
+    item.addEventListener('mouseover', (event) => {
+      var element = event.target;
+      var column = element.dataset.column;
+      var row = element.dataset.row;
+      var cells = document.querySelectorAll(`.clue-cell[data-column='${column}'], .clue-cell[data-row='${row}']`);
+      Array.prototype.forEach.call(cells, function(item, i){
+        item.classList.add('highlight');
+      });
+    });
+  });
+
+  Array.prototype.forEach.call(play_cells, function(item, i){
+    item.addEventListener('mouseout', (event) => {
+      var element = event.target;
+      var column = element.dataset.column;
+      var row = element.dataset.row;
+      var cells = document.querySelectorAll(`.clue-cell[data-column='${column}'], .clue-cell[data-row='${row}']`);
+      Array.prototype.forEach.call(cells, function(item, i){
+        item.classList.remove('highlight');
+      });
+    });
+  });
+
 
   var submit_button = document.getElementById('submit_board');
 

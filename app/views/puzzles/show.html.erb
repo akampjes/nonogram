@@ -4,10 +4,10 @@
 
   <div class="row">
     <div class="column-clues column flex-container">
-      <% @puzzle.clues.for_columns.each do |column| %>
+      <% @puzzle.clues.for_columns.each_with_index do |column,index| %>
         <div class="flex-container-vertical">
           <% column.legend.each do |length_cell| %>
-            <div class="flex-item clue-cell"><%= length_cell %></div>
+            <div data-column=<%= index %> class="flex-item clue-cell"><%= length_cell %></div>
           <% end %>
         </div>
       <% end %>
@@ -26,10 +26,10 @@
     </div>
 
     <div class="flex-container-vertical column">
-      <% @puzzle.clues.for_rows.each do |row| %>
+      <% @puzzle.clues.for_rows.each_with_index do |row,index| %>
         <div class="flex-container">
           <% row.legend.each do |length_cell| %>
-            <div class="flex-item clue-cell"><%= length_cell %></div>
+            <div data-row=<%= index %> class="flex-item clue-cell"><%= length_cell %></div>
           <% end %>
         </div>
       <% end %>
