@@ -13,9 +13,9 @@ class Board
 
   def from_boxes(boxes)
     return self if boxes.blank?
-    boxes.each do |tile|
-      row = tile[:row]
-      column = tile[:column]
+    boxes.each do |cell|
+      row = cell[:row]
+      column = cell[:column]
       @board[row.to_i][column.to_i] = true
     end
     self
@@ -23,7 +23,7 @@ class Board
 
   def randomly_populate!
     @board.map! do |columns|
-      columns.map do |tile|
+      columns.map do |cell|
         random_square
       end
     end

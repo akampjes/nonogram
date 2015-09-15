@@ -10,9 +10,9 @@ function ready(fn) {
 }
 
 ready(() => {
-  var play_tiles = document.getElementsByClassName('play-tile');
+  var play_cells = document.getElementsByClassName('play-cell');
 
-  Array.prototype.forEach.call(play_tiles, function(item, i){
+  Array.prototype.forEach.call(play_cells, function(item, i){
     item.addEventListener('click', (event) => {
       var element = event.target;
       element.classList.toggle('selected');
@@ -29,21 +29,21 @@ ready(() => {
       var boxes = []
       var selecteds = document.getElementsByClassName('selected');
 
-      Array.prototype.forEach.call(selecteds, function(item, i){
-        item.addEventListener('click', (event) => {
-          var element = event.target;
-          var row = element.dataset.row;
-          var column = element.dataset.column;
-          boxes.push({row, column});
-        });
+      Array.prototype.forEach.call(selecteds, function(element, i){
+        var row = element.dataset.row;
+        var column = element.dataset.column;
+        boxes.push({row: row, column: column});
+        console.log(boxes);
       });
+
+      console.log(boxes);
 
       $.ajax({
         type: "POST",
         url:  location.href+'/check_solution.json',
         dataType: 'json',
         contentType: 'application/json',
-        data: JSON.stringify({boxes}),
+        data: JSON.stringify({boxes: boxes}),
         success: (response) => {
           console.log(response);
           var element = document.getElementsByClassName('board-status')[0]

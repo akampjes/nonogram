@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Board do
   subject(:board) { Board.new(size: 5) }
 
-  it 'populates a board an array of selected tiles' do
+  it 'populates a board an array of selected cells' do
     boxes = [{column: 2, row: 1}, {column: 1, row:1}]
     answer_board = board.from_boxes(boxes).row_lines
 
