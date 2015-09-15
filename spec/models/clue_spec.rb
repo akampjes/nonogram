@@ -7,12 +7,12 @@ RSpec.describe Clue, type: :model do
   it  { is_expected.to validate_presence_of :orientation }
   it  { is_expected.to validate_presence_of :puzzle }
 
-  describe '#lengths' do
-    it 'is set with an array of lengths' do
-      lengths = [1,2,3]
-      clue.lengths = lengths
+  describe '#legend' do
+    it 'is set with an array of legend' do
+      legend = [1,2,3]
+      clue.legend = legend
 
-      expect(clue.lengths).to eq lengths
+      expect(clue.legend).to eq legend
     end
   end
 end

@@ -5,16 +5,16 @@ RSpec.describe CheckSolution do
   let(:puzzle) { Puzzle.create!(board_size: board_size) }
 
   before do
-    puzzle.clues.create!(orientation: :column, position: 0, lengths: [1])
-    puzzle.clues.create!(orientation: :column, position: 1, lengths: [])
-    puzzle.clues.create!(orientation: :column, position: 2, lengths: [3])
-    puzzle.clues.create!(orientation: :column, position: 3, lengths: [3])
-    puzzle.clues.create!(orientation: :column, position: 4, lengths: [1])
-    puzzle.clues.create!(orientation: :row, position: 0, lengths: [1])
-    puzzle.clues.create!(orientation: :row, position: 1, lengths: [1])
-    puzzle.clues.create!(orientation: :row, position: 2, lengths: [2])
-    puzzle.clues.create!(orientation: :row, position: 3, lengths: [1])
-    puzzle.clues.create!(orientation: :row, position: 4, lengths: [1,1,1])
+    puzzle.clues.create!(orientation: :column, position: 0, legend: [1])
+    puzzle.clues.create!(orientation: :column, position: 1, legend: [])
+    puzzle.clues.create!(orientation: :column, position: 2, legend: [3])
+    puzzle.clues.create!(orientation: :column, position: 3, legend: [3])
+    puzzle.clues.create!(orientation: :column, position: 4, legend: [1])
+    puzzle.clues.create!(orientation: :row, position: 0, legend: [1])
+    puzzle.clues.create!(orientation: :row, position: 1, legend: [1])
+    puzzle.clues.create!(orientation: :row, position: 2, legend: [2])
+    puzzle.clues.create!(orientation: :row, position: 3, legend: [1])
+    puzzle.clues.create!(orientation: :row, position: 4, legend: [1,1,1])
   end
 
   it 'checks a correct solution' do

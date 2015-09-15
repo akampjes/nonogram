@@ -16,9 +16,9 @@ class GenerateNewPuzzle
 
   def create_clues!(lines:, orientation:)
     lines.each_with_index do |line, index|
-      lengths = CalculateLengths.new(line: line).call
+      legend = CalculateLengths.new(line: line).call
 
-      clue = @puzzle.clues.new(position: index, orientation: orientation, lengths: lengths)
+      clue = @puzzle.clues.new(position: index, orientation: orientation, legend: legend)
       clue.save!
     end
   end

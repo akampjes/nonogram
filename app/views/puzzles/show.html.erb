@@ -6,8 +6,8 @@
     <div class="column-clues column flex-container">
       <% @puzzle.clues.for_columns.each do |column| %>
         <div class="flex-container-vertical">
-          <% column.lengths.each do |length| %>
-            <div class="flex-item clue-tile"><%= length %></div>
+          <% column.legend.each do |length_cell| %>
+            <div class="flex-item clue-tile"><%= length_cell %></div>
           <% end %>
         </div>
       <% end %>
@@ -28,8 +28,8 @@
     <div class="flex-container-vertical column">
       <% @puzzle.clues.for_rows.each do |row| %>
         <div class="flex-container">
-          <% row.lengths.each do |length| %>
-            <div class="flex-item clue-tile"><%= length %></div>
+          <% row.legend.each do |length_cell| %>
+            <div class="flex-item clue-tile"><%= length_cell %></div>
           <% end %>
         </div>
       <% end %>

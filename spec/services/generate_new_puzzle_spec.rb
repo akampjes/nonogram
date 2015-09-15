@@ -16,16 +16,16 @@ RSpec.describe GenerateNewPuzzle, type: :service do
     srand(1)
 
     expected_clues = []
-    expected_clues << Clue.new(orientation: :column, position: 0, lengths: [3])
-    expected_clues << Clue.new(orientation: :column, position: 1, lengths: [1,1])
-    expected_clues << Clue.new(orientation: :column, position: 2, lengths: [3,1])
-    expected_clues << Clue.new(orientation: :column, position: 3, lengths: [2,1])
-    expected_clues << Clue.new(orientation: :column, position: 4, lengths: [1,2])
-    expected_clues << Clue.new(orientation: :row, position: 0, lengths: [1,3])
-    expected_clues << Clue.new(orientation: :row, position: 1, lengths: [4])
-    expected_clues << Clue.new(orientation: :row, position: 2, lengths: [1,1,1])
-    expected_clues << Clue.new(orientation: :row, position: 3, lengths: [1,2])
-    expected_clues << Clue.new(orientation: :row, position: 4, lengths: [1])
+    expected_clues << Clue.new(orientation: :column, position: 0, legend: [3])
+    expected_clues << Clue.new(orientation: :column, position: 1, legend: [1,1])
+    expected_clues << Clue.new(orientation: :column, position: 2, legend: [3,1])
+    expected_clues << Clue.new(orientation: :column, position: 3, legend: [2,1])
+    expected_clues << Clue.new(orientation: :column, position: 4, legend: [1,2])
+    expected_clues << Clue.new(orientation: :row, position: 0, legend: [1,3])
+    expected_clues << Clue.new(orientation: :row, position: 1, legend: [4])
+    expected_clues << Clue.new(orientation: :row, position: 2, legend: [1,1,1])
+    expected_clues << Clue.new(orientation: :row, position: 3, legend: [1,2])
+    expected_clues << Clue.new(orientation: :row, position: 4, legend: [1])
 
     GenerateNewPuzzle.new(puzzle: puzzle).call
 
