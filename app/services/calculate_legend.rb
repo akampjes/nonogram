@@ -1,4 +1,4 @@
-class CalculateLengths
+class CalculateLegend
   def initialize(line:)
     @line = line
   end

@@ -22,6 +22,6 @@ class CheckSolution
   end
 
   def line_correct?(clue, line)
-    clue.legend == CalculateLengths.new(line: line).call
+    clue.legend == CalculateLegend.new(line: line).call
   end
 end
