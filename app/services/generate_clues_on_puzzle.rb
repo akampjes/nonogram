@@ -1,7 +1,4 @@
-# This could be renamed without new
-# Generate new clues
-# generate clues on puzzle
-class GenerateNewPuzzle
+class GenerateCluesOnPuzzle
   def initialize(puzzle:)
     @puzzle = puzzle
   end

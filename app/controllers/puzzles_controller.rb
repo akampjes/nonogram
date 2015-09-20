@@ -13,7 +13,7 @@ class PuzzlesController < ApplicationController
 
   def create
     @puzzle = Puzzle.new(puzzle_params)
-    GenerateNewPuzzle.new(puzzle: @puzzle).call
+    GenerateCluesOnPuzzle.new(puzzle: @puzzle).call
 
     if @puzzle.save
       redirect_to puzzle_path(@puzzle)
