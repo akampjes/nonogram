@@ -18,6 +18,7 @@ class Board
       column = cell[:column]
       @board[row.to_i][column.to_i] = true
     end
+
     self
   end
 

@@ -1,3 +1,6 @@
+# This could be renamed without new
+# Generate new clues
+# generate clues on puzzle
 class GenerateNewPuzzle
   def initialize(puzzle:)
     @puzzle = puzzle

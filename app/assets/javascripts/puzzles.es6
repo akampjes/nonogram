@@ -4,36 +4,37 @@
 function puzzle_submission() {
   var submit_button = document.getElementById('submit_board');
 
-  // Only want to run this if we have a submit_button on the page :(
-  if(submit_button){
-    submit_button.addEventListener('click', (event) => {
-      var boxes = []
-      var selecteds = document.getElementsByClassName('selected');
-
-      Array.prototype.forEach.call(selecteds, function(element, i){
-        var row = element.dataset.row;
-        var column = element.dataset.column;
-        boxes.push({row: row, column: column});
-        console.log(boxes);
-      });
-
-      console.log(boxes);
-
-      $.ajax({
-        type: "POST",
-        url:  location.href+'/check_solution.json',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: JSON.stringify({boxes: boxes}),
-        success: (response) => {
-          console.log(response);
-          var element = document.getElementsByClassName('board-status')[0]
-          console.log(response);
-          element.textContent = response['message'];
-        }
-      });
-    });
+  if(submit_button === undefined){
+    return;
   }
+
+  submit_button.addEventListener('click', (event) => {
+    var boxes = []
+    var selecteds = document.getElementsByClassName('selected');
+
+    Array.prototype.forEach.call(selecteds, function(element, i){
+      var row = element.dataset.row;
+      var column = element.dataset.column;
+      boxes.push({row: row, column: column});
+      console.log(boxes);
+    });
+
+    console.log(boxes);
+
+    $.ajax({
+      type: "POST",
+      url:  location.href+'/check_solution.json',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify({boxes: boxes}),
+      success: (response) => {
+        console.log(response);
+        var element = document.getElementsByClassName('board-status')[0]
+        console.log(response);
+        element.textContent = response['message'];
+      }
+    });
+  });
 }
 
 function board_interaction() {
@@ -48,6 +49,7 @@ function board_interaction() {
 
   Array.prototype.forEach.call(play_cells, function(item, i){
     item.addEventListener('mouseover', (event) => {
+      //can i use let here?
       var element = event.target;
       var column = element.dataset.column;
       var row = element.dataset.row;
@@ -80,8 +82,8 @@ function ready(fn) {
 }
 
 ready(() => {
-  board_interaction()
-    puzzle_submission();
+  board_interaction();
+  puzzle_submission();
 });
 
 ready();
