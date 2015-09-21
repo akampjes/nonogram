@@ -22,6 +22,6 @@ class CheckSolution
   end
 
   def line_correct?(legend, line)
-    legend.clues == CalculateLegend.new(line: line).call
+    legend.clues.map(&:contiguous_boxes) == CalculateLegend.new(line: line).call
   end
 end

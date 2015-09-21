@@ -6,8 +6,8 @@
     <div class="column-clues column flex-container">
       <% @puzzle.legends.for_columns.each_with_index do |column,index| %>
         <div class="flex-container-vertical">
-          <% column.clues.each do |length_cell| %>
-            <div data-column="<%= index %>" class="flex-item clue-cell"><%= length_cell %></div>
+          <% column.clues.each do |clue_cell| %>
+            <div data-column="<%= index %>" class="flex-item clue-cell"><%= clue_cell.contiguous_boxes %></div>
           <% end %>
         </div>
       <% end %>
@@ -28,8 +28,8 @@
     <div class="flex-container-vertical column">
       <% @puzzle.legends.for_rows.each_with_index do |row,index| %>
         <div class="flex-container">
-          <% row.clues.each do |length_cell| %>
-            <div data-row="<%= index %>" class="flex-item clue-cell"><%= length_cell %></div>
+          <% row.clues.each do |clue_cell| %>
+            <div data-row="<%= index %>" class="flex-item clue-cell"><%= clue_cell.contiguous_boxes %></div>
           <% end %>
         </div>
       <% end %>

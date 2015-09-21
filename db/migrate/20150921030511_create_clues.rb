@@ -1,11 +1,12 @@
 class CreateClues < ActiveRecord::Migration
   def change
     create_table :clues do |t|
-      t.text :values
+      t.integer :legend_id
       t.integer :position
-      t.integer :orientation
 
       t.timestamps null: false
     end
+
+    remove_column :legends, :clues
   end
 end

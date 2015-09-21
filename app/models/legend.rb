@@ -1,5 +1,6 @@
 class Legend < ActiveRecord::Base
   belongs_to :puzzle
+  has_many :clues, -> { order :position }
 
   enum orientation: [:row, :column]
 

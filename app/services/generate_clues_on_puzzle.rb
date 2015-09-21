@@ -15,10 +15,15 @@ class GenerateCluesOnPuzzle
   private
 
   def create_legends!(lines:, orientation:)
+
     lines.each_with_index do |line, index|
+      legend = @puzzle.legends.new(position: index, orientation: orientation)
       clues = CalculateLegend.new(line: line).call
 
-      legend = @puzzle.legends.new(position: index, orientation: orientation, clues: clues)
+      clues.each_with_index do |clue,index2|
+        Clue.create!(position: index2, contiguous_boxes: clue, legend: legend)
+      end
+
       legend.save!
     end
   end
