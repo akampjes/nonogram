@@ -1,4 +1,4 @@
-class Clue < ActiveRecord::Base
+class Legend < ActiveRecord::Base
   belongs_to :puzzle
 
   enum orientation: [:row, :column]
@@ -7,8 +7,8 @@ class Clue < ActiveRecord::Base
   validates :orientation, presence: true
   validate :validate_position_is_in_range
 
-  scope :for_columns, -> { where(orientation: Clue.orientations[:column]).order(:position) }
-  scope :for_rows, -> { where(orientation: Clue.orientations[:row]).order(:position) }
+  scope :for_columns, -> { where(orientation: Legend.orientations[:column]).order(:position) }
+  scope :for_rows, -> { where(orientation: Legend.orientations[:row]).order(:position) }
 
   def validate_position_is_in_range
     unless position && puzzle && position >= 0 && position < puzzle.board_size 

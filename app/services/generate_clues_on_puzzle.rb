@@ -8,18 +8,18 @@ class GenerateCluesOnPuzzle
 
     board.randomly_populate!
 
-    create_clues!(lines: board.row_lines, orientation: :row)
-    create_clues!(lines: board.column_lines, orientation: :column)
+    create_legends!(lines: board.row_lines, orientation: :row)
+    create_legends!(lines: board.column_lines, orientation: :column)
   end
 
   private
 
-  def create_clues!(lines:, orientation:)
+  def create_legends!(lines:, orientation:)
     lines.each_with_index do |line, index|
-      legend = CalculateLegend.new(line: line).call
+      clues = CalculateLegend.new(line: line).call
 
-      clue = @puzzle.clues.new(position: index, orientation: orientation, legend: legend)
-      clue.save!
+      legend = @puzzle.legends.new(position: index, orientation: orientation, clues: clues)
+      legend.save!
     end
   end
 end

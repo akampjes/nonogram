@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915012357) do
+ActiveRecord::Schema.define(version: 20150921020628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "clues", force: :cascade do |t|
+  create_table "legends", force: :cascade do |t|
     t.integer  "position"
     t.integer  "orientation"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "puzzle_id"
-    t.integer  "legend",      default: [],              array: true
+    t.integer  "clues",       default: [],              array: true
   end
 
   create_table "puzzles", force: :cascade do |t|
