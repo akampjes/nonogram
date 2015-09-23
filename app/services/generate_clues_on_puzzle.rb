@@ -1,10 +1,11 @@
+# Rename this to generatelegendsonpuzzle
 class GenerateCluesOnPuzzle
   def initialize(puzzle:)
     @puzzle = puzzle
   end
 
   def call
-    board = Board.new(size: @puzzle.board_size)
+    board = Board.new(size: @puzzle.board_size, colors: @puzzle.max_colors)
 
     board.randomly_populate!
 
@@ -21,7 +22,10 @@ class GenerateCluesOnPuzzle
       clues = CalculateLegend.new(line: line).call
 
       clues.each_with_index do |clue,index2|
-        Clue.create!(position: index2, contiguous_boxes: clue, legend: legend)
+        clue.position = index2
+        clue.legend = legend
+        #Clue.create!(position: index2, contiguous_boxes: clue, legend: legend)
+        clue.save!
       end
 
       legend.save!

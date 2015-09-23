@@ -22,5 +22,11 @@ RSpec.describe Puzzle, type: :model do
         expect(subject).to be_invalid
       end
     end
+
+    describe '#max_colors' do
+      it 'defaults to 1' do
+        expect(subject.max_colors).to eq 1
+      end
+    end
   end
 end

@@ -17,29 +17,29 @@ RSpec.describe CheckSolution do
     legends << puzzle.legends.new(orientation: :row, position: 3)
     legends << puzzle.legends.new(orientation: :row, position: 4)
 
-    legends[0].clues.new(legend: legends[0], position: 0, contiguous_boxes: 1).save!
-    legends[2].clues.new(legend: legends[2], position: 0, contiguous_boxes: 3).save!
-    legends[3].clues.new(legend: legends[3], position: 0, contiguous_boxes: 3).save!
-    legends[4].clues.new(legend: legends[4], position: 0, contiguous_boxes: 1).save!
-    legends[5].clues.new(legend: legends[5], position: 0, contiguous_boxes: 1).save!
-    legends[6].clues.new(legend: legends[6], position: 0, contiguous_boxes: 1).save!
-    legends[7].clues.new(legend: legends[7], position: 0, contiguous_boxes: 2).save!
-    legends[8].clues.new(legend: legends[8], position: 0, contiguous_boxes: 1).save!
-    legends[9].clues.new(legend: legends[9], position: 0, contiguous_boxes: 1).save!
-    legends[9].clues.new(legend: legends[9], position: 1, contiguous_boxes: 1).save!
-    legends[9].clues.new(legend: legends[9], position: 2, contiguous_boxes: 1).save!
+    legends[0].clues.new(legend: legends[0], position: 0, contiguous_boxes: 1, color: '1').save!
+    legends[2].clues.new(legend: legends[2], position: 0, contiguous_boxes: 3, color: '1').save!
+    legends[3].clues.new(legend: legends[3], position: 0, contiguous_boxes: 3, color: '1').save!
+    legends[4].clues.new(legend: legends[4], position: 0, contiguous_boxes: 1, color: '1').save!
+    legends[5].clues.new(legend: legends[5], position: 0, contiguous_boxes: 1, color: '1').save!
+    legends[6].clues.new(legend: legends[6], position: 0, contiguous_boxes: 1, color: '1').save!
+    legends[7].clues.new(legend: legends[7], position: 0, contiguous_boxes: 2, color: '1').save!
+    legends[8].clues.new(legend: legends[8], position: 0, contiguous_boxes: 1, color: '1').save!
+    legends[9].clues.new(legend: legends[9], position: 0, contiguous_boxes: 1, color: '1').save!
+    legends[9].clues.new(legend: legends[9], position: 1, contiguous_boxes: 1, color: '1').save!
+    legends[9].clues.new(legend: legends[9], position: 2, contiguous_boxes: 1, color: '1').save!
   end
 
   it 'checks a correct solution' do
     boxes = [
-      {column: 0, row: 4},
-      {column: 2, row: 2},
-      {column: 2, row: 3},
-      {column: 2, row: 4},
-      {column: 3, row: 0},
-      {column: 3, row: 1},
-      {column: 3, row: 2},
-      {column: 4, row: 4},
+      {column: 0, row: 4, color: '1'},
+      {column: 2, row: 2, color: '1'},
+      {column: 2, row: 3, color: '1'},
+      {column: 2, row: 4, color: '1'},
+      {column: 3, row: 0, color: '1'},
+      {column: 3, row: 1, color: '1'},
+      {column: 3, row: 2, color: '1'},
+      {column: 4, row: 4, color: '1'},
     ]
 
     board = Board.new(size: puzzle.board_size).from_boxes(boxes)

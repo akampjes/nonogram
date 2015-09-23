@@ -34,6 +34,12 @@ RSpec.describe GenerateCluesOnPuzzle, type: :service do
     expect(puzzle.legends).to match_legend_array expected_legends
   end
 
+  it 'saves clues' do
+    srand(1)
+
+    expect { GenerateCluesOnPuzzle.new(puzzle: puzzle).call }.to change { Clue.count }
+  end
+
   context 'puzzle legends are supposed to be random' do
     it 'creates random legends' do
       srand(1)

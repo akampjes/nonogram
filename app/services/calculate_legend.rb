@@ -1,3 +1,5 @@
+# rename this to calculateclues
+# maybe generatecluesforroworcolumn
 class CalculateLegend
   def initialize(line:)
     @line = line
@@ -9,10 +11,25 @@ class CalculateLegend
 
   private
 
-  # Takes an array of bools and returns an array with the lengths of each contigous set of truthy values
-  # [true, true, false, false, true, false]
-  # => [2, 1]
   def count_contigous_boxes
-    @line.split(&:blank?).reject(&:empty?).map(&:count)
+    legend = []
+
+    color = nil
+    contiguous = 0
+    @line.each do |cell|
+      if cell != color
+        legend << Clue.new(contiguous_boxes: contiguous, color: color) unless color.blank?
+        color = cell
+        contiguous = 0
+      end
+
+      contiguous += 1
+    end
+
+    if contiguous > 0 && !color.blank?
+      legend << Clue.new(contiguous_boxes: contiguous, color: color)
+    end
+
+    legend 
   end
 end
