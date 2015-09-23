@@ -23,6 +23,8 @@ class Board
     self
   end
 
+  # todo moving this to a service
+  # ...later
   def randomly_populate!
     @board.map! do |columns|
       columns.map do |cell|

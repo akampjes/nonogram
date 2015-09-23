@@ -17,10 +17,13 @@ class GenerateCluesOnPuzzle
 
   def create_legends!(lines:, orientation:)
 
+    # todo rename indexes
     lines.each_with_index do |line, index|
       legend = @puzzle.legends.new(position: index, orientation: orientation)
       clues = CalculateLegend.new(line: line).call
 
+      # can use a transaction
+      # legend.clues.build
       clues.each_with_index do |clue,index2|
         clue.position = index2
         clue.legend = legend
