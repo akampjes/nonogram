@@ -39,11 +39,11 @@ class PuzzlesController < ApplicationController
   def won?
     puzzle = Puzzle.find(params[:id])
 
-    board = Board.new(size: puzzle.board_size).from_boxes(params[:boxes])
+    board = Board.new(size: puzzle.board_size, colors: puzzle.max_colors).from_boxes(params[:boxes])
     CheckSolution.new(puzzle: puzzle, board: board).call
   end
   
   def puzzle_params
-    params.require(:puzzle).permit(:board_size)
+    params.require(:puzzle).permit(:board_size, :max_colors)
   end
 end

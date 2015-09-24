@@ -24,6 +24,7 @@ class Board
   end
 
   # todo moving this to a service
+  # heh, or a command ;)
   # ...later
   def randomly_populate!
     @board.map! do |columns|
@@ -39,7 +40,7 @@ class Board
 
   def pick_color(random_value)
     # Normalise based on number of colors we have
-    normalised_random_value = (random_value * 100) % @max_colors
+    normalised_random_value = ((random_value * 100).to_i % @max_colors)
 
     # Pick a section of the color space
     (normalised_random_value * (255 / @max_colors)).to_i
