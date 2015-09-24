@@ -36,7 +36,12 @@
     </div>
   </div>
 
+
   <br>
+
+  <% @distinct_colors.each do |color| %>
+    <div class="flex-item color-picker" data-color="<%= color %>" style="background-color: hsl(<%= color %>, 90%, 50%);"><%= color %></div>
+  <% end %>
 
   <div>
     <button id="submit_board">Submit</button>

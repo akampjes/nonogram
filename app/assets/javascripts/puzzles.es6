@@ -1,5 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
+//
+var current_color = null;
 
 function puzzle_submission() {
   var submit_button = document.getElementById('submit_board');
@@ -15,7 +17,8 @@ function puzzle_submission() {
     Array.prototype.forEach.call(selecteds, function(element, i){
       var row = element.dataset.row;
       var column = element.dataset.column;
-      boxes.push({row: row, column: column});
+      var color = element.dataset.color;
+      boxes.push({row: row, column: column, color: color});
       console.log(boxes);
     });
 
@@ -44,6 +47,15 @@ function board_interaction() {
     item.addEventListener('click', (event) => {
       var element = event.target;
       element.classList.toggle('selected');
+
+      if(!element.dataset.color){
+        element.style.backgroundColor = `hsl(${current_color}, 90%, 50%)`;
+        element.setAttribute('data-color', current_color);
+      }else{
+        element.style.backgroundColor = '';
+        element.setAttribute('data-color', '');
+      }
+      console.log(element);
     });
   });
 
@@ -73,6 +85,19 @@ function board_interaction() {
   });
 }
 
+function color_picker() {
+  var color_pickers = document.getElementsByClassName('color-picker');
+
+  Array.prototype.forEach.call(color_pickers, function(item, i){
+    item.addEventListener('click', (event) => {
+      var element = event.target;
+      current_color = element.dataset.color;
+      console.log("current_color" + current_color);
+    });
+  });
+
+}
+
 function ready(fn) {
   if (document.readyState != 'loading'){
     fn();
@@ -82,6 +107,7 @@ function ready(fn) {
 }
 
 ready(() => {
+  color_picker();
   board_interaction();
   puzzle_submission();
 });

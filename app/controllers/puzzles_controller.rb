@@ -5,6 +5,8 @@ class PuzzlesController < ApplicationController
 
   def show
     @puzzle = Puzzle.find(params[:id])
+    @distinct_colors = (0..@puzzle.max_colors-1).map { |x| x * (255 / @puzzle.max_colors)}
+    #@distinct_colors = Clue.includes(:legend).where(legends: {puzzle: @puzzle}).select(:color).distinct
   end
 
   def new
