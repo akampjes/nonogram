@@ -8,7 +8,7 @@ RSpec.describe Puzzle, type: :model do
     end
 
     it 'defaults to 5' do
-      expect(subject.board_size).to eq 5
+      expect(subject.board_size).to eq Puzzle::DEFAULT_BOARD_SIZE
     end
 
     context 'invalid board_size when' do
@@ -25,7 +25,7 @@ RSpec.describe Puzzle, type: :model do
 
     describe '#max_colors' do
       it 'defaults to 1' do
-        expect(subject.max_colors).to eq 1
+        expect(subject.max_colors).to eq Puzzle::DEFAULT_MAX_COLORS
       end
     end
   end

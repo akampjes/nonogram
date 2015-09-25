@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GenerateCluesOnPuzzle, type: :service do
+RSpec.describe GenerateLegendsOnPuzzle, type: :service do
   let(:board_size) { 5 }
   let(:puzzle) { Puzzle.create!(board_size: board_size) }
 
@@ -8,7 +8,7 @@ RSpec.describe GenerateCluesOnPuzzle, type: :service do
     srand(1)
 
     expect {
-      GenerateCluesOnPuzzle.new(puzzle: puzzle).call
+      GenerateLegendsOnPuzzle.new(puzzle: puzzle).call
     }.to change { Legend.count }.by 2*board_size
   end
 
@@ -29,7 +29,7 @@ RSpec.describe GenerateCluesOnPuzzle, type: :service do
     expected_legends << Legend.new(orientation: :row, position: 3, clues: [1,2])
     expected_legends << Legend.new(orientation: :row, position: 4, clues: [1])
 
-    GenerateCluesOnPuzzle.new(puzzle: puzzle).call
+    GenerateLegendsOnPuzzle.new(puzzle: puzzle).call
 
     expect(puzzle.legends).to match_legend_array expected_legends
   end
@@ -37,7 +37,7 @@ RSpec.describe GenerateCluesOnPuzzle, type: :service do
   it 'saves clues' do
     srand(1)
 
-    expect { GenerateCluesOnPuzzle.new(puzzle: puzzle).call }.to change { Clue.count }
+    expect { GenerateLegendsOnPuzzle.new(puzzle: puzzle).call }.to change { Clue.count }
   end
 
   context 'puzzle legends are supposed to be random' do
@@ -45,8 +45,8 @@ RSpec.describe GenerateCluesOnPuzzle, type: :service do
       srand(1)
       puzzle2 = Puzzle.create!(board_size: board_size)
 
-      GenerateCluesOnPuzzle.new(puzzle: puzzle).call
-      GenerateCluesOnPuzzle.new(puzzle: puzzle2).call
+      GenerateLegendsOnPuzzle.new(puzzle: puzzle).call
+      GenerateLegendsOnPuzzle.new(puzzle: puzzle2).call
 
       expect(puzzle.legends).not_to match_legend_array puzzle2.legends
     end

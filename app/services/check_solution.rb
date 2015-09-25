@@ -22,7 +22,7 @@ class CheckSolution
   end
 
   def line_correct?(legend, line)
-    solution_clues = CalculateLegend.new(line: line).call
+    solution_clues = CalculateClues.new(line: line).call
     return false if legend.clues.count != solution_clues.count
 
     legend.clues.zip(solution_clues).all? do |clue, solution_clue|

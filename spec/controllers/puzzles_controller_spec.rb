@@ -5,7 +5,7 @@ RSpec.describe PuzzlesController, type: :controller do
   let(:valid_params) { { boxes: [{row: 0, column: 0}, {row: 0, column: 2}, {row: 0, column: 4}], id: puzzle.id } }
 
   before do
-    GenerateCluesOnPuzzle.new(puzzle: puzzle).call
+    GenerateLegendsOnPuzzle.new(puzzle: puzzle).call
   end
 
   describe 'POST #check_solution' do
