@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Board do
+RSpec.describe RandomlyPopulateBoard do
   subject(:board) { Board.new(size: 5) }
 
   it 'populates a board an array of selected cells' do
@@ -16,5 +16,15 @@ RSpec.describe Board do
     lines = board.from_boxes(nil).row_lines
 
     expect(lines).to be_kind_of Array
+  end
+
+  context 'board is able to randomyly populate itself' do
+    it 'populates boards differently' do
+      srand(1)
+      board1 = RandomlyPopulateBoard.new(board: Board.new(size: 5), max_colors: 3).call
+      board2 = RandomlyPopulateBoard.new(board: Board.new(size: 5), max_colors: 3).call
+
+      expect(board1.row_lines).not_to match_array board2.row_lines
+    end
   end
 end

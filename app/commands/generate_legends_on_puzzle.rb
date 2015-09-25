@@ -6,7 +6,8 @@ class GenerateLegendsOnPuzzle
   def call
     board = Board.new(size: @puzzle.board_size, colors: @puzzle.max_colors)
 
-    board.randomly_populate!
+    #board.randomly_populate!
+    RandomlyPopulateBoard.new(board: board, max_colors: @puzzle.max_colors).call
 
     create_legends!(board.row_lines, :row)
     create_legends!(board.column_lines, :column)
