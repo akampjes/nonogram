@@ -86,3 +86,13 @@ button {
 .highlight {
   background: black;
 }
+
+.selected-color-picker {
+  border: 2px solid #dadada;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
+.color-picker-container {
+  display: flex;
+}

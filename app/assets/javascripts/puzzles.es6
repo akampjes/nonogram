@@ -92,10 +92,23 @@ function color_picker() {
     item.addEventListener('click', (event) => {
       var element = event.target;
       current_color = element.dataset.color;
+
+      // Remove outlining for current color pickers
+      var current_selected_color_picker = document.getElementsByClassName('selected-color-picker');
+      Array.prototype.forEach.call(current_selected_color_picker, function(element, i){
+        element.classList.remove('selected-color-picker');
+      });
+
+      element.classList.add('selected-color-picker');
       console.log("current_color" + current_color);
     });
   });
 
+  // Initialize current_color
+  var element = color_pickers[0];
+  current_color = element.dataset.color;
+  element.classList.add('selected-color-picker');
+  console.log("initial current_color" + current_color);
 }
 
 function ready(fn) {
