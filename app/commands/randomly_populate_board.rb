@@ -34,10 +34,11 @@ class RandomlyPopulateBoard
   def random_cell
     # About 50% chance of dark square seems to generate alright puzzles
     random_cell_value = rand
+
     if random_cell_value < 0.5
       pick_color(random_cell_value).to_s
     else
-      ''
+      nil
     end
   end
 end
