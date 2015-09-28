@@ -5,7 +5,7 @@ class PuzzlesController < ApplicationController
 
   def show
     @puzzle = Puzzle.find(params[:id])
-    @distinct_colors = Clue.includes(:legend).where(legends: {puzzle_id: @puzzle.id}).pluck(:color).uniq
+    @distinct_colors = Clue.includes(:legend).where(legends: {puzzle_id: @puzzle.id}).pluck(:color).uniq.reject(&:blank?)
   end
 
   def new

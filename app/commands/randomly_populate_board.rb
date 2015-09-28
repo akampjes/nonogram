@@ -36,7 +36,7 @@ class RandomlyPopulateBoard
     random_cell_value = rand
 
     if random_cell_value < 0.5
-      pick_color(random_cell_value).to_s
+      "hsl(#{pick_color(random_cell_value)}, 90%, 50%)"
     else
       nil
     end
