@@ -6,10 +6,6 @@ var current_color = null;
 function puzzle_submission() {
   var submit_button = document.getElementById('submit_board');
 
-  if(submit_button === undefined){
-    return;
-  }
-
   submit_button.addEventListener('click', (event) => {
     var boxes = []
     var selecteds = document.getElementsByClassName('selected');
@@ -120,6 +116,12 @@ function ready(fn) {
 }
 
 ready(() => {
+  var submit_button = document.getElementById('submit_board');
+
+  if(!submit_button){
+    return;
+  }
+
   color_picker();
   board_interaction();
   puzzle_submission();
