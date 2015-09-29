@@ -1,4 +1,3 @@
-# concepts
 class Board
   def initialize(size:, colors: 1)
     @board = Array.new(size) { Array.new(size) }
