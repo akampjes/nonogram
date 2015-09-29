@@ -1,7 +1,9 @@
 class Clue < ActiveRecord::Base
   belongs_to :legend
 
-  validates :legend, presence: true
-  validates :position, presence: true
+  scope :ordered, -> { order(:position) }
+
+  validates :legend, :position, presence: true
+  # unique index in database schema plz
   validates :position, uniqueness: { scope: :legend }
 end

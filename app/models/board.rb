@@ -1,3 +1,4 @@
+# concepts
 class Board
   def initialize(size:, colors: 1)
     @board = Array.new(size) { Array.new(size) }
@@ -12,6 +13,7 @@ class Board
     @board.transpose
   end
 
+  # to services
   def from_boxes(boxes)
     return self if boxes.blank?
     boxes.each do |cell|

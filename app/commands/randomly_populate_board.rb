@@ -1,44 +1,31 @@
 class RandomlyPopulateBoard
-  def initialize(board: board, max_colors: max_colors)
+  def initialize(board:, max_colors:)
     @board = board
     @max_colors = max_colors
   end
 
   def call
-    randomly_populate!
+    # rowlines -> rows
+    # want to create a board from in here
+    # need to extend board to allow it to do these things
+    @board.row_lines.map! do |columns|
+      columns.map do |cell|
+        random_color_or_blank
+      end
+    end
 
-    # I don't think I need to return this
+    # do i really need to be returning this?
+    # I would if i refactored board
     @board
   end
 
   private
 
-  def randomly_populate!
-    @board.row_lines.map! do |columns|
-      columns.map do |cell|
-        random_cell
-      end
-    end
+  def random_color_or_blank
+    if rand <  0.5
+      random_color_value = rand(0...@max_colors) * (255 / @max_colors)
 
-    self
-  end
-
-  def pick_color(random_value)
-    # Normalise based on number of colors we have
-    normalised_random_value = ((random_value * 100).to_i % @max_colors)
-
-    # Pick a section of the color space
-    (normalised_random_value * (255 / @max_colors)).to_i
-  end
-
-  def random_cell
-    # About 50% chance of dark square seems to generate alright puzzles
-    random_cell_value = rand
-
-    if random_cell_value < 0.5
-      "hsl(#{pick_color(random_cell_value)}, 90%, 50%)"
-    else
-      nil
+      "hsl(#{random_color_value}, 90%, 50%)"
     end
   end
 end

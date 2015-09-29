@@ -5,17 +5,10 @@ class CalculateClues
   end
 
   def call
-    count_contiguous_boxes
-  end
-
-  private
-
-  def count_contiguous_boxes
     @line
       .chunk { |color| color }
       .reject { |color, _| color.blank? }
-      .map.with_index do |color_group, position|
-        color, occurrences = color_group
+      .map.with_index do |(color, occurrences), position|
         Clue.new(contiguous_boxes: occurrences.count, color: color, position: position)
       end
   end

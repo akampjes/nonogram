@@ -1,21 +1,22 @@
 class Legend < ActiveRecord::Base
   belongs_to :puzzle
-  has_many :clues, -> { order :position }
+  has_many :clues
 
   enum orientation: [:row, :column]
 
-  validates :puzzle, presence: true
-  validates :orientation, presence: true
+  scope :for_columns, -> { where(orientation: orientations[:column]).order(:position) }
+  scope :for_rows, -> { where(orientation: orientations[:row]).order(:position) }
+
+  validates :puzzle, :orientation, presence: true
   validate :check_position_is_in_range
 
-  scope :for_columns, -> { where(orientation: Legend.orientations[:column]).order(:position) }
-  scope :for_rows, -> { where(orientation: Legend.orientations[:row]).order(:position) }
+  private
 
   def check_position_is_in_range
-    return unless position.present? && puzzle.present?
+    errors.add(:position, 'outside of grid') unless inside_grid?
+  end
 
-    unless position >= 0 && position < puzzle.board_size
-      errors.add(:position, 'outside of grid')
-    end
+  def inside_grid?
+    puzzle.present? && (0...puzzle.board_size).include?(position)
   end
 end
