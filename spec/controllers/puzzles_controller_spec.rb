@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe PuzzlesController, type: :controller do
   let!(:puzzle) { Puzzle.create(board_size: 5) }
+  let(:board) { RandomlyPopulateBoard.new(board: Board.new(size: puzzle.board_size, colors: puzzle.max_colors), max_colors: puzzle.max_colors).call }
   let(:valid_params) { { boxes: [{row: 0, column: 0}, {row: 0, column: 2}, {row: 0, column: 4}], id: puzzle.id } }
 
   before do
-    GenerateLegendsOnPuzzle.new(puzzle: puzzle).call
+    GenerateLegendsOnPuzzle.new(puzzle: puzzle, board: board).call
   end
 
   describe 'POST #check_solution' do

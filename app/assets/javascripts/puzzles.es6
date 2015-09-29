@@ -45,7 +45,7 @@ function board_interaction() {
       element.classList.toggle('selected');
 
       if(!element.dataset.color){
-        element.style.backgroundColor = `hsl(${current_color}, 90%, 50%)`;
+        element.style.backgroundColor = current_color;
         element.setAttribute('data-color', current_color);
       }else{
         element.style.backgroundColor = '';

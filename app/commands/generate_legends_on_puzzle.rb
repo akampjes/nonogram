@@ -1,15 +1,12 @@
 class GenerateLegendsOnPuzzle
-  def initialize(puzzle:)
+  def initialize(puzzle:, board:)
     @puzzle = puzzle
+    @board = board
   end
 
   def call
-    board = Board.new(size: @puzzle.board_size, colors: @puzzle.max_colors)
-
-    RandomlyPopulateBoard.new(board: board, max_colors: @puzzle.max_colors).call
-
-    create_legends_and_clues(board.row_lines, :row)
-    create_legends_and_clues(board.column_lines, :column)
+    create_legends_and_clues(@board.row_lines, :row)
+    create_legends_and_clues(@board.column_lines, :column)
   end
 
   private

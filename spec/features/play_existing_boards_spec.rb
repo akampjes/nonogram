@@ -5,7 +5,9 @@ RSpec.feature "PlayExistingPuzzles", type: :feature do
   # the views to work
   before do
     @puzzle = Puzzle.create!(board_size: 5)
-    GenerateLegendsOnPuzzle.new(puzzle: @puzzle).call
+    board = RandomlyPopulateBoard.new(board: Board.new(size: @puzzle.board_size, colors: @puzzle.max_colors), max_colors: @puzzle.max_colors).call
+    GenerateLegendsOnPuzzle.new(puzzle: @puzzle, board: board).call
+
   end
 
   scenario 'Select existing puzzle' do

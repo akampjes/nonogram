@@ -14,7 +14,10 @@ class PuzzlesController < ApplicationController
 
   def create
     @puzzle = Puzzle.new(puzzle_params)
-    GenerateLegendsOnPuzzle.new(puzzle: @puzzle).call
+
+    board = Board.new(size: @puzzle.board_size, colors: @puzzle.max_colors)
+    board = RandomlyPopulateBoard.new(board: board, max_colors: @puzzle.max_colors).call
+    GenerateLegendsOnPuzzle.new(puzzle: @puzzle, board: board).call
 
     if @puzzle.save
       redirect_to puzzle_path(@puzzle)
