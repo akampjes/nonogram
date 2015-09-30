@@ -1,6 +1,6 @@
 class Legend < ActiveRecord::Base
   belongs_to :puzzle
-  has_many :clues
+  has_many :clues, dependent: :destroy
 
   enum orientation: [:row, :column]
 
