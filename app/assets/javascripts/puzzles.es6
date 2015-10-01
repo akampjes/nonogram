@@ -42,12 +42,13 @@ function board_interaction() {
   Array.prototype.forEach.call(play_cells, function(item, i){
     item.addEventListener('click', (event) => {
       var element = event.target;
-      element.classList.toggle('selected');
 
-      if(!element.dataset.color){
+      if(!(element.dataset.color == current_color)){
+        element.classList.add('selected');
         element.style.backgroundColor = current_color;
         element.setAttribute('data-color', current_color);
       }else{
+        element.classList.remove('selected');
         element.style.backgroundColor = '';
         element.setAttribute('data-color', '');
       }
