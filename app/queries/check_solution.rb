@@ -11,8 +11,8 @@ class CheckSolution
   private
 
   def all_clues_correct?
-    lines_correct?(@puzzle.legends.for_rows, @board.row_lines) &&
-      lines_correct?(@puzzle.legends.for_columns, @board.column_lines)
+    lines_correct?(@puzzle.legends.for_rows, @board.rows) &&
+      lines_correct?(@puzzle.legends.for_columns, @board.columns)
   end
 
   def lines_correct?(legends, board_lines)

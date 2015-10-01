@@ -5,7 +5,7 @@ class RandomlyPopulateBoard
   end
 
   def call
-    size = @board.row_lines.length
+    size = @board.rows.length
 
     cells = []
     (0...size).each do |row|

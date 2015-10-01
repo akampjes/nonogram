@@ -3,12 +3,11 @@ class Board
     @board = Array.new(size) { Array.new(size) }
   end
 
-  # row_lines -> rows
-  def row_lines
+  def rows
     @board
   end
 
-  def column_lines
+  def columns
     @board.transpose
   end
 

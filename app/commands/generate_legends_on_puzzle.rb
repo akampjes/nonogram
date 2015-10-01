@@ -5,8 +5,8 @@ class GenerateLegendsOnPuzzle
   end
 
   def call
-    create_legends_and_clues(@board.row_lines, :row)
-    create_legends_and_clues(@board.column_lines, :column)
+    create_legends_and_clues(@board.rows, :row)
+    create_legends_and_clues(@board.columns, :column)
   end
 
   private

@@ -5,7 +5,7 @@ RSpec.describe RandomlyPopulateBoard do
 
   it 'populates a board an array of selected cells' do
     boxes = [{column: 2, row: 1, color: '1'}, {column: 1, row:1, color: '1'}]
-    answer_board = board.from_cells(boxes).row_lines
+    answer_board = board.from_cells(boxes).rows
 
     expect(answer_board[1][2]).to eq '1'
     expect(answer_board[1][1]).to eq '1'
@@ -13,7 +13,7 @@ RSpec.describe RandomlyPopulateBoard do
   end
 
   it 'handles nil answers' do
-    lines = board.from_cells(nil).row_lines
+    lines = board.from_cells(nil).rows
 
     expect(lines).to be_kind_of Array
   end
@@ -24,7 +24,7 @@ RSpec.describe RandomlyPopulateBoard do
       board1 = RandomlyPopulateBoard.new(board: Board.new(size: 5), max_colors: 3).call
       board2 = RandomlyPopulateBoard.new(board: Board.new(size: 5), max_colors: 3).call
 
-      expect(board1.row_lines).not_to match_array board2.row_lines
+      expect(board1.rows).not_to match_array board2.rows
     end
   end
 end
