@@ -11,7 +11,8 @@ class Board
     @board.transpose
   end
 
-  def from_cells(cells)
+  # Or I could call this `fill_from_cells`
+  def populate_from_cells(cells)
     return self if cells.blank?
 
     cells.each do |cell|

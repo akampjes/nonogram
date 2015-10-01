@@ -12,7 +12,7 @@ class RandomlyPopulateBoard
       end
     end
 
-    @board.from_cells(cells)
+    @board.populate_from_cells(cells)
   end
 
   private
