@@ -32,14 +32,14 @@ RSpec.describe CheckSolution do
 
   it 'checks a correct solution' do
     boxes = [
-      {column: 0, row: 4, color: '1'},
-      {column: 2, row: 2, color: '1'},
-      {column: 2, row: 3, color: '1'},
-      {column: 2, row: 4, color: '1'},
-      {column: 3, row: 0, color: '1'},
-      {column: 3, row: 1, color: '1'},
-      {column: 3, row: 2, color: '1'},
-      {column: 4, row: 4, color: '1'},
+      Cell.new(column: 0, row: 4, color: '1'),
+      Cell.new(column: 2, row: 2, color: '1'),
+      Cell.new(column: 2, row: 3, color: '1'),
+      Cell.new(column: 2, row: 4, color: '1'),
+      Cell.new(column: 3, row: 0, color: '1'),
+      Cell.new(column: 3, row: 1, color: '1'),
+      Cell.new(column: 3, row: 2, color: '1'),
+      Cell.new(column: 4, row: 4, color: '1'),
     ]
 
     board = Board.new(size: puzzle.board_size).from_cells(boxes)
@@ -49,8 +49,8 @@ RSpec.describe CheckSolution do
 
   it 'checks an incorrect solution' do
     boxes = [
-      {column: 0, row: 4},
-      {column: 2, row: 2},
+      Cell.new(column: 0, row: 4, color: 'meh'),
+      Cell.new(column: 2, row: 2, color: 'heh'),
     ]
 
     board = Board.new(size: puzzle.board_size).from_cells(boxes)

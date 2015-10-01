@@ -5,12 +5,10 @@ class RandomlyPopulateBoard
   end
 
   def call
-    size = @board.rows.length
-
     cells = []
-    (0...size).each do |row|
-      (0...size).each do |column|
-        cells << { row: row, column: column, color:random_color_or_blank }
+    (0...@board.rows.length).each do |row|
+      (0...@board.columns.length).each do |column|
+        cells << Cell.new(row: row, column: column, color:random_color_or_blank)
       end
     end
 

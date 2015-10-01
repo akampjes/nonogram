@@ -15,9 +15,7 @@ class Board
     return self if cells.blank?
 
     cells.each do |cell|
-      row = cell[:row]
-      column = cell[:column]
-      @board[row.to_i][column.to_i] = cell[:color]
+      @board[cell.row][cell.column] = cell.color
     end
 
     self

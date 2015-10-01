@@ -4,7 +4,7 @@ RSpec.describe RandomlyPopulateBoard do
   subject(:board) { Board.new(size: 5) }
 
   it 'populates a board an array of selected cells' do
-    boxes = [{column: 2, row: 1, color: '1'}, {column: 1, row:1, color: '1'}]
+    boxes = [Cell.new(column: 2, row: 1, color: '1'), Cell.new(column: 1, row:1, color: '1')]
     answer_board = board.from_cells(boxes).rows
 
     expect(answer_board[1][2]).to eq '1'

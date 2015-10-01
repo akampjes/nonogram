@@ -43,7 +43,9 @@ class PuzzlesController < ApplicationController
   def won?
     puzzle = Puzzle.find(params[:id])
 
-    board = Board.new(size: puzzle.board_size).from_cells(params[:boxes])
+    cells = params[:boxes].map { |box| Cell.new(row: box[:row], column: box[:column], color: box[:color]) }
+    board = Board.new(size: puzzle.board_size).from_cells(cells)
+
     CheckSolution.new(puzzle: puzzle, board: board).call
   end
   
