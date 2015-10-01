@@ -37,5 +37,5 @@ winky.each_line.with_index do |line,row|
   end
 end
 
-board = Board.new(size: 15).from_boxes(boxes)
+board = Board.new(size: 15).from_cells(boxes)
 GenerateLegendsOnPuzzle.new(puzzle: puzzle, board: board).call

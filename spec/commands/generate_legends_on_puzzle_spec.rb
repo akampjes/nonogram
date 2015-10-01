@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe GenerateLegendsOnPuzzle, type: :service do
   let(:board_size) { 5 }
   let(:puzzle) { Puzzle.create!(board_size: board_size) }
-  let(:board) { RandomlyPopulateBoard.new(board: Board.new(size: puzzle.board_size, colors: puzzle.max_colors), max_colors: puzzle.max_colors).call }
+  let(:board) { RandomlyPopulateBoard.new(board: Board.new(size: puzzle.board_size), max_colors: puzzle.max_colors).call }
 
   it 'generates creates legends' do
     srand(1)

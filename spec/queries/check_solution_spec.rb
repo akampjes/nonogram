@@ -42,7 +42,7 @@ RSpec.describe CheckSolution do
       {column: 4, row: 4, color: '1'},
     ]
 
-    board = Board.new(size: puzzle.board_size).from_boxes(boxes)
+    board = Board.new(size: puzzle.board_size).from_cells(boxes)
 
     expect(CheckSolution.new(puzzle: puzzle, board: board).call).to be true
   end
@@ -53,7 +53,7 @@ RSpec.describe CheckSolution do
       {column: 2, row: 2},
     ]
 
-    board = Board.new(size: puzzle.board_size).from_boxes(boxes)
+    board = Board.new(size: puzzle.board_size).from_cells(boxes)
 
     expect(CheckSolution.new(puzzle: puzzle, board: board).call).to be false
   end

@@ -5,18 +5,16 @@ class RandomlyPopulateBoard
   end
 
   def call
-    # rowlines -> rows
-    # want to create a board from in here
-    # need to extend board to allow it to do these things
-    @board.row_lines.map! do |columns|
-      columns.map do |cell|
-        random_color_or_blank
+    size = @board.row_lines.length
+
+    cells = []
+    (0...size).each do |row|
+      (0...size).each do |column|
+        cells << { row: row, column: column, color:random_color_or_blank }
       end
     end
 
-    # do i really need to be returning this?
-    # I would if i refactored board
-    @board
+    @board.from_cells(cells)
   end
 
   private

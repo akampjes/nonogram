@@ -1,9 +1,9 @@
 class Board
-  def initialize(size:, colors: 1)
+  def initialize(size:)
     @board = Array.new(size) { Array.new(size) }
-    @max_colors = colors
   end
 
+  # row_lines -> rows
   def row_lines
     @board
   end
@@ -12,10 +12,10 @@ class Board
     @board.transpose
   end
 
-  # to services
-  def from_boxes(boxes)
-    return self if boxes.blank?
-    boxes.each do |cell|
+  def from_cells(cells)
+    return self if cells.blank?
+
+    cells.each do |cell|
       row = cell[:row]
       column = cell[:column]
       @board[row.to_i][column.to_i] = cell[:color]

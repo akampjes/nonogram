@@ -15,7 +15,7 @@ class PuzzlesController < ApplicationController
   def create
     @puzzle = Puzzle.new(puzzle_params)
 
-    board = Board.new(size: @puzzle.board_size, colors: @puzzle.max_colors)
+    board = Board.new(size: @puzzle.board_size)
     board = RandomlyPopulateBoard.new(board: board, max_colors: @puzzle.max_colors).call
     GenerateLegendsOnPuzzle.new(puzzle: @puzzle, board: board).call
 
@@ -43,7 +43,7 @@ class PuzzlesController < ApplicationController
   def won?
     puzzle = Puzzle.find(params[:id])
 
-    board = Board.new(size: puzzle.board_size, colors: puzzle.max_colors).from_boxes(params[:boxes])
+    board = Board.new(size: puzzle.board_size).from_cells(params[:boxes])
     CheckSolution.new(puzzle: puzzle, board: board).call
   end
   
