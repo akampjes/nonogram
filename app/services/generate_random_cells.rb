@@ -17,15 +17,9 @@ class GenerateRandomCells
 
   private
 
-  COLORS = ['#ff0000', '#00ff00', '#0000ff']
-
   def random_color_or_blank
     if rand <  0.5
-      random_color_value = rand(0...@max_colors) * (255 / @max_colors)
-
-      "hsl(#{random_color_value}, 90%, 50%)"
-
-      #COLORS.sample
+      rand(1..@max_colors).to_s
     end
   end
 end

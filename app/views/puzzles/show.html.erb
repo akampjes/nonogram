@@ -7,7 +7,7 @@
       <% @puzzle.legends.for_columns.each_with_index do |column,index| %>
         <div class="flex-container-vertical">
           <% column.clues.by_position.each do |clue_cell| %>
-            <div data-column="<%= index %>" class="flex-item clue-cell" style="background-color: <%= clue_cell.color %>;"><%= clue_cell.contiguous_boxes %></div>
+            <div data-column="<%= index %>" class="flex-item clue-cell cell-color-<%= clue_cell.color %>"><%= clue_cell.contiguous_boxes %></div>
           <% end %>
         </div>
       <% end %>
@@ -29,7 +29,7 @@
       <% @puzzle.legends.for_rows.each_with_index do |row,index| %>
         <div class="flex-container">
           <% row.clues.by_position.each do |clue_cell| %>
-            <div data-row="<%= index %>" class="flex-item clue-cell" style="background-color: <%= clue_cell.color %>;"><%= clue_cell.contiguous_boxes %></div>
+            <div data-row="<%= index %>" class="flex-item clue-cell cell-color-<%= clue_cell.color %>"><%= clue_cell.contiguous_boxes %></div>
           <% end %>
         </div>
       <% end %>
@@ -41,7 +41,7 @@
 
   <div class="color-picker-container">
     <% @distinct_colors.each do |color| %>
-      <div class="flex-item color-picker" data-color="<%= color %>" style="background-color: <%= color %>;"></div>
+      <div class="flex-item color-picker cell-color-<%= color %>" data-color="<%= color %>"></div>
     <% end %>
   </div>
 

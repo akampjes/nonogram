@@ -45,11 +45,11 @@ function board_interaction() {
 
       if(!(element.dataset.color == current_color)){
         element.classList.add('selected');
-        element.style.backgroundColor = current_color;
+        element.classList.add('cell-color-'+current_color)
         element.setAttribute('data-color', current_color);
       }else{
         element.classList.remove('selected');
-        element.style.backgroundColor = '';
+        element.classList.remove('cell-color-'+element.dataset.color);
         element.setAttribute('data-color', '');
       }
       console.log(element);

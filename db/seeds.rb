@@ -30,12 +30,12 @@ boxes = []
 winky.each_line.with_index do |line,row|
   line.each_char.with_index do |char,column|
     if char == 'w'
-      boxes << {row: row, column: column, color: '#ffffff'}
+      boxes << {row: row, column: column, color: '5'}
     elsif char == 'p'
-      boxes << {row: row, column: column, color: '#fa0e6a'}
+      boxes << {row: row, column: column, color: '3'}
     end
   end
 end
 
-board = Board.new(size: 15).populate_from_cells(boxes)
+board = Board.new(size: 15, cells: boxes)
 GenerateLegendsOnPuzzle.new(puzzle: puzzle, board: board).call
