@@ -5,8 +5,10 @@ class GenerateLegendsOnPuzzle
   end
 
   def call
-    create_legends_and_clues(@board.rows, :row)
-    create_legends_and_clues(@board.columns, :column)
+    ActiveRecord::Base.transaction do
+      create_legends_and_clues(@board.rows, :row)
+      create_legends_and_clues(@board.columns, :column)
+    end
   end
 
   private
@@ -22,14 +24,11 @@ class GenerateLegendsOnPuzzle
   def create_clues(line, legend)
     clues = CalculateClues.new(line: line).call
 
-    # Or I could do `ActiveRecord::Base.transaction`
-    legend.transaction do
-      clues.each do |clue|
-        clue.legend = legend
-        clue.save!
-      end
-
-      legend.save!
+    clues.each do |clue|
+      clue.legend = legend
+      clue.save!
     end
+
+    legend.save!
   end
 end

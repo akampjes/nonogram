@@ -19,8 +19,8 @@ RSpec.describe Legend, type: :model do
       clue1 = legend.clues.create!(position: 1)
       clue0 = legend.clues.create!(position: 0)
 
-      expect(legend.clues.ordered.first).to eq clue0
-      expect(legend.clues.ordered.second).to eq clue1
+      expect(legend.clues.by_position.first).to eq clue0
+      expect(legend.clues.by_position.second).to eq clue1
     end
   end
 end

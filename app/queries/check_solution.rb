@@ -26,9 +26,12 @@ class CheckSolution
 
     return false if legend.clues.count != solution_clues.count
 
-    legend.clues.ordered.zip(solution_clues).all? do |clue, solution_clue|
-      # method this
-      clue.color == solution_clue.color && clue.contiguous_boxes == solution_clue.contiguous_boxes
+    legend.clues.by_position.zip(solution_clues).all? do |clue, solution_clue|
+      clues_match?(clue, solution_clue)
     end
+  end
+
+  def clues_match?(clue, solution_clue)
+    clue.color == solution_clue.color && clue.contiguous_boxes == solution_clue.contiguous_boxes
   end
 end

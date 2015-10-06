@@ -5,7 +5,7 @@ class PuzzlesController < ApplicationController
 
   def show
     @puzzle = Puzzle.find(params[:id])
-    @distinct_colors = Clue.includes(:legend).where(legends: {puzzle_id: @puzzle.id}).pluck(:color).uniq.reject(&:blank?)
+    @distinct_colors = Clue.includes(:legend).merge(@puzzle.legends).pluck(:color).uniq.reject(&:blank?)
   end
 
   def new
@@ -13,14 +13,14 @@ class PuzzlesController < ApplicationController
   end
 
   def create
-    @puzzle = Puzzle.new(puzzle_params)
+    # Is this approach really better than just returning a Puzzle object that
+    # we are then going to save in this controller?
+    # Doing it this way spreading out into the controller
+    puzzle_generator = GenerateRandomPuzzle.new(puzzle_params: puzzle_params)
+    @puzzle = puzzle_generator.puzzle
 
-    board = Board.new(size: @puzzle.board_size)
-    board = RandomlyPopulateBoard.new(board: board, max_colors: @puzzle.max_colors).call
-    GenerateLegendsOnPuzzle.new(puzzle: @puzzle, board: board).call
-
-    if @puzzle.save
-      redirect_to puzzle_path(@puzzle)
+    if puzzle_generator.call
+      redirect_to @puzzle
     else
       render :new
     end
@@ -31,24 +31,15 @@ class PuzzlesController < ApplicationController
     # I could make an entire controller just to take #create on a solution
     # do the check there but because we don't persist but rather just
     # query, I feel like this is sufficient.
-    if won?
-      render json: {won: true, message: 'yup you win!'}
-    else
-      render json: {won: false, message: 'nope, try again'}
-    end
+    render json: if WonPuzzle.new(params: params).call
+                   {won: true, message: 'yup you win!'}
+                 else
+                   {won: false, message: 'nope, try again'}
+                 end
   end
 
   private
 
-  def won?
-    puzzle = Puzzle.find(params[:id])
-
-    cells = params[:boxes].map { |box| Cell.new(row: box[:row], column: box[:column], color: box[:color]) }
-    board = Board.new(size: puzzle.board_size).populate_from_cells(cells)
-
-    CheckSolution.new(puzzle: puzzle, board: board).call
-  end
-  
   def puzzle_params
     params.require(:puzzle).permit(:board_size, :max_colors)
   end
