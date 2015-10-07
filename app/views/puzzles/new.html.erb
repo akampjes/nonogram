@@ -1,7 +1,7 @@
 <%= form_for(@puzzle) do |f| %>
 <%= f.label :board_size %>
 <%= f.number_field :board_size %>
-<%= f.label :max_colors %>
-<%= f.number_field :max_colors %>
+<%= f.label :number_of_colors%>
+<%= f.number_field :number_of_colors%>
 <%= f.submit 'Create' %>
 <% end %>

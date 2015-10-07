@@ -41,6 +41,6 @@ class PuzzlesController < ApplicationController
   private
 
   def puzzle_params
-    params.require(:puzzle).permit(:board_size, :max_colors)
+    params.require(:puzzle).permit(:board_size, :number_of_colors)
   end
 end

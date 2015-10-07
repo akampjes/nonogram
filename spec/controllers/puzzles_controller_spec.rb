@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PuzzlesController, type: :controller do
   let!(:puzzle) { Puzzle.create(board_size: 5) }
-  let(:board) { Board.new(size: puzzle.board_size, cells: GenerateRandomCells.new(board_size: puzzle.board_size, max_colors: puzzle.max_colors).call) }
+  let(:board) { Board.new(size: puzzle.board_size, cells: GenerateRandomCells.new(board_size: puzzle.board_size, number_of_colors: 2).call) }
   let(:valid_params) { { boxes: [{row: 0, column: 0}, {row: 0, column: 2}, {row: 0, column: 4}], id: puzzle.id } }
 
   before do

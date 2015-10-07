@@ -1,7 +1,7 @@
 class GenerateRandomCells
-  def initialize(board_size:, max_colors:)
+  def initialize(board_size:, number_of_colors:)
     @board_size = board_size
-    @max_colors = max_colors
+    @number_of_colors = number_of_colors
   end
 
   def call
@@ -19,7 +19,7 @@ class GenerateRandomCells
 
   def random_color_or_blank
     if rand <  0.5
-      rand(1..@max_colors).to_s
+      rand(1..@number_of_colors).to_s
     end
   end
 end

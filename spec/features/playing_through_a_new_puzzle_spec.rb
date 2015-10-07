@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'play through a new game', js: true do
   let(:board_size) { 5 }
-  let(:max_colors) { 3 }
+  let(:number_of_colors) { 3 }
 
   scenario 'playing through a puzzle' do
     visit puzzles_path
@@ -10,7 +10,7 @@ RSpec.feature 'play through a new game', js: true do
 
     click_on 'Create puzzle'
     fill_in 'Board size', with: board_size
-    fill_in 'Max colors', with: max_colors
+    fill_in 'Number of colors', with: number_of_colors
     click_on 'Create'
     # show nick why this fails
     #Puzzle.create!(ee....)
@@ -31,7 +31,7 @@ RSpec.feature 'play through a new game', js: true do
     expect(page).to have_css 'div[data-column="0"][data-row="0"].play-cell.selected'
 
     expect(page).to have_css '.selected-color-picker'
-    expect(page).to have_css '.color-picker', count: max_colors
+    expect(page).to have_css '.color-picker', count: number_of_colors
 
     last_color_picker = page.find('.color-picker:last-child')
     expect(page.find('.selected-color-picker')).to_not eq last_color_picker
